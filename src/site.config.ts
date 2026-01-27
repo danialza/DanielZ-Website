@@ -37,17 +37,17 @@ export const menuLinks: { path: string; title: string }[] = [
 		title: "Home",
 	},
 	{
-		path: "/about/",
-		title: "About",
+		path: "/about-me/",
+		title: "About Me - CV",
 	},
 	{
 		path: "/posts/",
 		title: "Blog",
 	},
-	{
+	/*{
 		path: "/notes/",
 		title: "Notes",
-	},
+	},*/
 ];
 
 // https://expressive-code.com/reference/configuration/
