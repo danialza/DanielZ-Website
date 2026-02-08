@@ -3,7 +3,7 @@ title: "About Me"
 publishDate: "26 January 2026"
 description: "Learn more about me"
 tags: ["about"]
-draft: false
+draft: true
 ---
 
 Hi, I'm a starter Astro. I'm particularly great for getting you started with your own blogging website.
