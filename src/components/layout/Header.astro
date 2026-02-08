@@ -5,41 +5,64 @@ import { menuLinks } from "@/site.config";
 import { siteConfig } from "../../site.config";
 ---
 
-<header class="group relative mb-28 flex items-center sm:ps-18" id="main-header">
-	<div class="flex sm:flex-col">
+<header class="group relative mb-8 flex items-center sm:mb-16 sm:justify-start" id="main-header">
+	<div class="flex sm:flex-row sm:items-center sm:gap-0 sm:text-left">
 		<a
 			aria-current={Astro.url.pathname === "/" ? "page" : false}
-			class="inline-flex items-center sm:relative sm:inline-block sm:grayscale sm:hover:filter-none"
+			class="inline-flex items-center sm:shrink-0 sm:grayscale sm:hover:filter-none"
 			href="/"
 		>
 			<img
 				src="/icon.svg"
 				alt="DanielZ Logo"
-				class="me-3 h-10 w-10 object-contain sm:absolute sm:-start-18 sm:me-0 sm:h-20 sm:w-20"
+				class="me-0 h-10 w-10 object-contain sm:h-20 sm:w-20"
 				loading="eager"
 			/>
-			<span class="text-xl font-bold sm:text-2xl">{siteConfig.title}</span>
 		</a>
-		<nav
-			aria-label="Main menu"
-			class="bg-global-bg absolute -inset-x-4 top-12 hidden flex-col divide-y px-2 py-4 group-[.menu-open]:z-50 group-[.menu-open]:flex sm:static sm:z-auto sm:-ms-4 sm:mt-1 sm:flex sm:flex-row sm:divide-x sm:divide-y-0 sm:bg-transparent sm:p-0"
-			id="navigation-menu"
-		>
-			{
-				menuLinks.map((link) => (
-					<a
-						aria-current={Astro.url.pathname === link.path ? "page" : false}
-						class="text-accent px-2 py-4 font-semibold sm:px-4 sm:py-0 sm:underline-offset-2 sm:hover:underline"
-						href={link.path}
-					>
-						{link.title}
-					</a>
-				))
-			}
-		</nav>
+		<div class="flex flex-col sm:items-start sm:justify-center sm:ms-0">
+			<a
+				aria-current={Astro.url.pathname === "/" ? "page" : false}
+				class="sr-only sm:not-sr-only sm:inline sm:text-2xl sm:font-bold"
+				href="/"
+			>
+				{siteConfig.title}
+			</a>
+			<nav
+				aria-label="Main menu"
+				class="bg-global-bg/95 fixed inset-0 hidden flex-col items-center justify-center px-6 py-10 text-center group-[.menu-open]:z-50 group-[.menu-open]:flex sm:static sm:z-auto sm:mt-0 sm:flex sm:flex-row sm:items-center sm:bg-transparent sm:p-0 sm:text-left"
+				id="navigation-menu"
+			>
+				<button
+					aria-label="Close menu"
+					class="border-accent/40 text-accent absolute top-10 right-6 h-10 w-10 rounded-full border sm:hidden"
+					data-close-menu
+					type="button"
+				>
+					✕
+				</button>
+				<div class="flex flex-col items-center justify-center gap-2 sm:flex-row sm:items-center sm:gap-0">
+					{
+						menuLinks.map((link, index) => (
+							<>
+								{index > 0 && <span class="hidden px-2 text-accent sm:inline">|</span>}
+								<a
+									aria-current={Astro.url.pathname === link.path ? "page" : false}
+									class="text-accent px-2 py-4 text-lg font-semibold sm:px-0 sm:py-0 sm:text-sm sm:underline-offset-2 sm:hover:underline"
+									href={link.path}
+								>
+									{link.title}
+								</a>
+							</>
+						))
+					}
+				</div>
+			</nav>
+		</div>
 	</div>
-	<Search />
-	<ThemeToggle />
+	<div class="flex items-center ms-auto">
+		<Search />
+		<ThemeToggle />
+	</div>
 	<mobile-button>
 		<button
 			aria-expanded="false"
@@ -66,7 +89,6 @@ import { siteConfig } from "../../site.config";
 			<svg
 				aria-hidden="true"
 				class="text-accent absolute start-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0 transition-all group-aria-expanded:scale-100 group-aria-expanded:opacity-100"
-				class="text-accent"
 				fill="none"
 				focusable="false"
 				id="cross-svg"
@@ -90,11 +112,28 @@ import { siteConfig } from "../../site.config";
 		connectedCallback() {
 			const headerEl = document.getElementById("main-header")!;
 			const mobileButtonEl = this.querySelector<HTMLButtonElement>("button");
+			const navEl = headerEl?.querySelector<HTMLElement>("#navigation-menu");
+			const closeMenuEl = navEl?.querySelector<HTMLButtonElement>("[data-close-menu]");
+
+			const setMenuOpen = (open: boolean) => {
+				if (!headerEl || !mobileButtonEl) return;
+				headerEl.classList.toggle("menu-open", open);
+				this.#menuOpen = open;
+				mobileButtonEl.setAttribute("aria-expanded", this.#menuOpen.toString());
+			};
 
 			mobileButtonEl?.addEventListener("click", () => {
-				if (headerEl) toggleClass(headerEl, "menu-open");
-				this.#menuOpen = !this.#menuOpen;
-				mobileButtonEl.setAttribute("aria-expanded", this.#menuOpen.toString());
+				setMenuOpen(!this.#menuOpen);
+			});
+
+			closeMenuEl?.addEventListener("click", () => {
+				setMenuOpen(false);
+			});
+
+			navEl?.addEventListener("click", (event) => {
+				const target = event.target as HTMLElement | null;
+				if (target === navEl) setMenuOpen(false);
+				if (target?.closest("a")) setMenuOpen(false);
 			});
 		}
 	}
