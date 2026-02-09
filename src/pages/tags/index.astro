@@ -1,12 +1,32 @@
 ---
 import { getAllPosts, getUniqueTagsWithCount } from "@/data/post";
+import { getAllProjects, getUniqueProjectTagsWithCount } from "@/data/project";
 import PageLayout from "@/layouts/Base.astro";
 
 const allPosts = await getAllPosts();
-const allTags = getUniqueTagsWithCount(allPosts);
+const allProjects = await getAllProjects();
+const postTags = getUniqueTagsWithCount(allPosts);
+const projectTags = getUniqueProjectTagsWithCount(allProjects);
+
+const tagCounts = new Map<string, { post: number; project: number }>();
+for (const [tag, count] of postTags) {
+	tagCounts.set(tag, { post: count, project: 0 });
+}
+for (const [tag, count] of projectTags) {
+	const prev = tagCounts.get(tag) ?? { post: 0, project: 0 };
+	tagCounts.set(tag, { post: prev.post, project: count });
+}
+const allTags = [...tagCounts.entries()]
+	.map(([tag, counts]) => ({
+		tag,
+		post: counts.post,
+		project: counts.project,
+		total: counts.post + counts.project,
+	}))
+	.sort((a, b) => b.total - a.total);
 
 const meta = {
-	description: "A list of all the topics I've written about in my posts",
+	description: "A list of all the topics I've written about across posts and projects",
 	title: "All Tags",
 };
 ---
@@ -15,17 +35,17 @@ const meta = {
 	<h1 class="title mb-6">Tags</h1>
 	<ul class="space-y-4">
 		{
-			allTags.map(([tag, val]) => (
+			allTags.map(({ tag, post, project, total }) => (
 				<li class="flex items-center gap-x-2">
 					<a
 						class="cactus-link inline-block"
 						href={`/tags/${tag}/`}
-						title={`View posts with the tag: ${tag}`}
+						title={`View items with the tag: ${tag}`}
 					>
 						&#35;{tag}
 					</a>
 					<span class="inline-block">
-						- {val} Post{val > 1 && "s"}
+						- ({total} items: {post} posts, {project} projects)
 					</span>
 				</li>
 			))

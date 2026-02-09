@@ -1,11 +1,19 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import PostPreview from "@/components/blog/PostPreview.astro";
+import ProjectPreview from "@/components/project/ProjectPreview.astro";
 import Note from "@/components/note/Note.astro";
 import SocialList from "@/components/SocialList.astro";
 import { getAllPosts } from "@/data/post";
+import { getAllProjects } from "@/data/project";
 import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
+
+// Projects
+const MAX_PROJECTS = 6;
+const allProjects = await getAllProjects();
+const allProjectsByDate = allProjects.sort(collectionDateSort) as CollectionEntry<"project">[];
+const latestProjects = allProjectsByDate.slice(0, MAX_PROJECTS);
 
 // Posts
 const MAX_POSTS = 10;
@@ -45,6 +53,24 @@ const latestNotes = allNotes
 								<PostPreview post={p} />
 							</li>
 						))}
+					</ul>
+				</section>
+			)
+		}
+		{
+			latestProjects.length > 0 && (
+				<section class="mt-16">
+					<h2 class="title text-accent mb-6 text-xl">
+						<a href="/projects/">Projects</a>
+					</h2>
+					<ul class="space-y-4" role="list">
+						{
+							latestProjects.map((p) => (
+								<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
+									<ProjectPreview project={p} />
+								</li>
+							))
+						}
 					</ul>
 				</section>
 			)

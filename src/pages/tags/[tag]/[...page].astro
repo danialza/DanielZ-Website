@@ -1,79 +1,72 @@
 ---
 import { render } from "astro:content";
-import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
-import { Icon } from "astro-icon/components";
-import PostPreview from "@/components/blog/PostPreview.astro";
-import Pagination from "@/components/Paginator.astro";
+import type { GetStaticPaths } from "astro";
+import FormattedDate from "@/components/FormattedDate.astro";
 import { getAllPosts, getTagMeta, getUniqueTags } from "@/data/post";
+import { getAllProjects } from "@/data/project";
 import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
 
-export const getStaticPaths = (async ({ paginate }) => {
+export const getStaticPaths = (async () => {
 	const allPosts = await getAllPosts();
-	const sortedPosts = allPosts.sort(collectionDateSort);
-	const uniqueTags = getUniqueTags(sortedPosts);
+	const allProjects = await getAllProjects();
+	const uniqueTags = [
+		...new Set([...getUniqueTags(allPosts), ...allProjects.flatMap((p) => p.data.tags)]),
+	];
 
-	return uniqueTags.flatMap((tag) => {
-		const postsWithTag = sortedPosts.filter((post) => post.data.tags.includes(tag));
-		return paginate(postsWithTag, {
-			pageSize: 10,
-			params: { tag },
-		});
-	});
+	return uniqueTags.map((tag) => ({
+		params: { tag },
+	}));
 }) satisfies GetStaticPaths;
 
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
-
-const { page } = Astro.props as Props;
 const { tag } = Astro.params;
 const tagMeta = await getTagMeta(tag);
+const allPosts = await getAllPosts();
+const allProjects = await getAllProjects();
+const postsWithTag = allPosts.filter((post) => post.data.tags.includes(tag));
+const projectsWithTag = allProjects.filter((project) => project.data.tags.includes(tag));
 
 const TagContent = tagMeta ? (await render(tagMeta)).Content : null;
 
 const meta = {
-	description: tagMeta?.data.description ?? `View all posts with the tag - ${tag}`,
-	title: tagMeta?.data.title ?? `Posts about ${tag}`,
+	description: tagMeta?.data.description ?? `View all posts and projects with the tag - ${tag}`,
+	title: tagMeta?.data.title ?? `Items about ${tag}`,
 };
 
-const paginationProps = {
-	...(page.url.prev && {
-		prevUrl: {
-			text: "← Previous Tags",
-			url: page.url.prev,
-		},
-	}),
-	...(page.url.next && {
-		nextUrl: {
-			text: "Next Tags →",
-			url: page.url.next,
-		},
-	}),
-};
+const sortedPosts = postsWithTag.sort(collectionDateSort);
+const sortedProjects = projectsWithTag.sort(collectionDateSort);
+const combined = [
+	...sortedProjects.map((entry) => ({ type: "project" as const, entry })),
+	...sortedPosts.map((entry) => ({ type: "post" as const, entry })),
+].sort((a, b) => b.entry.data.publishDate.getTime() - a.entry.data.publishDate.getTime());
 ---
 
 <PageLayout meta={meta}>
-	<nav class="mb-8" aria-label="Breadcrumbs">
-		<ul class="flex items-center">
-			<li class="flex items-center">
-				<a class="text-accent" href="/tags/">Tags</a>
-				<Icon aria-hidden="true" name="mdi:chevron-right" class="mx-1.5" />
-			</li>
-			<li aria-current="page" class=""><span aria-hidden="true">#</span>{tag}</li>
-		</ul>
-	</nav>
-	<h1 class="title capitalize">{tagMeta?.data.title ?? `Posts about ${tag}`}</h1>
+	<h1 class="title capitalize">{tagMeta?.data.title ?? `Items about ${tag}`}</h1>
 	<div class="prose prose-sm prose-cactus mb-16 max-w-none">
 		{tagMeta?.data.description && <p>{tagMeta.data.description}</p>}
 		{TagContent && <TagContent />}
 	</div>
 	<ul class="space-y-4">
-		{
-			page.data.map((p) => (
-				<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
-					<PostPreview as="h2" post={p} />
-				</li>
-			))
-		}
+		{combined.map((item) => (
+			<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
+				<FormattedDate
+					class="min-w-30 font-semibold text-gray-600 dark:text-gray-400"
+					date={item.entry.data.publishDate}
+				/>
+				<div>
+					{item.entry.data.draft && <span class="text-red-500">(Draft) </span>}
+					{item.type === "project" ? (
+						<a class="cactus-link" href={`/projects/${item.entry.id}/`}>
+							Project » {item.entry.data.title}
+						</a>
+					) : (
+						<a class="cactus-link" href={`/posts/${item.entry.id}/`}>
+							Post » {item.entry.data.title}
+						</a>
+					)}
+				</div>
+			</li>
+		))}
 	</ul>
-	<Pagination {...paginationProps} />
 </PageLayout>
