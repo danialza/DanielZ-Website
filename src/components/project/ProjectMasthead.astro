@@ -74,9 +74,9 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 				<>
 					{/* prettier-ignore */}
 					<span class="contents">
-						<a class="cactus-link inline-block before:content-['#']" data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}>
-							<span class="sr-only">View more projects with the tag&nbsp;</span>{tag}
-						</a>{i < data.tags.length - 1 && ", "}
+						<a class="cactus-link inline-block rounded-lg bg-quote/5 px-2 py-1 text-quote" data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}>
+							<span class="sr-only">View more projects with the tag&nbsp;</span>#{tag}
+						</a>{i < data.tags.length - 1 && " "}
 					</span>
 				</>
 			))}
