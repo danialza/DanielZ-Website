@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer.astro";
 import Header from "@/components/layout/Header.astro";
 import SkipLink from "@/components/SkipLink.astro";
 import ThemeProvider from "@/components/ThemeProvider.astro";
+import Analytics from "@vercel/analytics/astro";
 import { siteConfig } from "@/site.config";
 import type { SiteMeta } from "@/types";
 
@@ -50,5 +51,6 @@ const {
 				]
 			}
 		</script>
+		{import.meta.env.PROD && <Analytics />}
 	</body>
 </html>
