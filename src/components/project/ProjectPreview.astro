@@ -15,10 +15,23 @@ const { as: Tag = "div", project, withDesc = false } = Astro.props;
 	class="min-w-30 font-semibold text-gray-600 dark:text-gray-400"
 	date={project.data.publishDate}
 />
-<Tag>
-	{project.data.draft && <span class="text-red-500">(Draft) </span>}
-	<a class="cactus-link" href={`/projects/${project.id}/`}>
-		{project.data.title}
-	</a>
-</Tag>
+<div class="min-w-0">
+	<Tag>
+		{project.data.draft && <span class="text-red-500">(Draft) </span>}
+		<a class="cactus-link" href={`/projects/${project.id}/`}>
+			{project.data.title}
+		</a>
+	</Tag>
+	{
+		project.data.tags?.length ? (
+			<div class="mt-1 flex flex-wrap gap-2">
+				{project.data.tags.map((tag: string) => (
+					<a class="inline-block rounded-lg bg-quote/5 px-2 py-0.5 text-quote" href={`/tags/${tag}/`}>
+						#{tag}
+					</a>
+				))}
+			</div>
+		) : null
+	}
+</div>
 {withDesc && <q class="line-clamp-3 italic">{project.data.description}</q>}
