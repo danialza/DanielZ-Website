@@ -28,7 +28,12 @@ export default defineConfig({
 	integrations: [
 		expressiveCode(expressiveCodeOptions),
 		icon(),
-		sitemap(),
+		sitemap({
+			filter: (page) => {
+				const url = page.toString();
+				return !url.includes("/notes/") && !url.endsWith("/about/");
+			},
+		}),
 		mdx(),
 		robotsTxt(),
 		webmanifest({
