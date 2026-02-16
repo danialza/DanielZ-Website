@@ -12,7 +12,7 @@ const { headings } = Astro.props;
 const toc = generateToc(headings);
 ---
 
-<details open class="my-0 lg:my-0 lg:sticky lg:top-12 lg:w-80 rounded-md bg-black/5 dark:bg-white/5 p-4">
+<details open class="my-0 w-full max-w-full rounded-md bg-black/5 p-4 dark:bg-white/5 2xl:w-80">
 	<summary class="title hover:marker:text-accent cursor-pointer text-lg">Table of Contents</summary>
 	<nav class="ms-4 lg:w-full">
 		<ol class="mt-4">
