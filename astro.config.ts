@@ -90,6 +90,7 @@ export default defineConfig({
 		optimizeDeps: {
 			exclude: ["@resvg/resvg-js"],
 		},
+		// @ts-expect-error Vite type mismatch between Astro's bundled vite and direct vite plugin typings
 		plugins: [tailwind(), rawFonts([".ttf", ".woff"])],
 	},
 	env: {
