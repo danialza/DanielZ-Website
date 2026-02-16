@@ -9,15 +9,23 @@ import { siteConfig } from "../../site.config";
 	<div class="flex sm:flex-row sm:items-center sm:gap-0 sm:text-left">
 		<a
 			aria-current={Astro.url.pathname === "/" ? "page" : false}
-			class="inline-flex items-center sm:shrink-0 sm:grayscale sm:hover:filter-none"
+			class="inline-flex items-center sm:shrink-0"
 			href="/"
 		>
-			<img
-				src="/icon.svg"
-				alt="DanielZ Logo"
-				class="me-0 h-10 w-10 object-contain sm:h-20 sm:w-20"
-				loading="eager"
-			/>
+			<span class="me-0 inline-flex h-10 w-10 items-center sm:h-20 sm:w-20">
+				<img
+					src="/icon-light.svg"
+					alt="DanielZ Logo"
+					class="logo-light h-10 w-10 object-contain sm:h-20 sm:w-20"
+					loading="eager"
+				/>
+				<img
+					src="/icon-dark.svg"
+					alt="DanielZ Logo"
+					class="logo-dark h-10 w-10 object-contain sm:h-20 sm:w-20"
+					loading="eager"
+				/>
+			</span>
 		</a>
 		<div class="flex flex-col sm:items-start sm:justify-center sm:ms-0">
 			<a
