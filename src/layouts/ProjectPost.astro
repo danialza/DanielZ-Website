@@ -51,12 +51,34 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 				</div>
 			)}
 			<div
-				class="order-2 prose prose-sm prose-cactus max-w-none flex-1 prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-gray-600 prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none 2xl:order-1"
+				id="project-content"
+				class="order-2 prose prose-sm prose-cactus max-w-none flex-1 [&_img]:cursor-zoom-in prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-gray-600 prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none 2xl:order-1"
 			>
 				<slot />
 			</div>
 		</div>
 	</article>
+	<div
+		id="project-image-lightbox"
+		class="fixed inset-0 z-[120] hidden items-center justify-center bg-black/90 p-4"
+		aria-hidden="true"
+		aria-label="Image preview"
+		role="dialog"
+	>
+		<button
+			id="project-image-lightbox-close"
+			type="button"
+			class="absolute end-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-black/50 text-xl text-white hover:bg-black/70"
+			aria-label="Close image preview"
+		>
+			✕
+		</button>
+		<img
+			id="project-image-lightbox-image"
+			class="max-h-[92vh] max-w-[96vw] rounded-md object-contain"
+			alt=""
+		/>
+	</div>
 	<button
 		class="hover:border-link fixed end-4 bottom-8 z-90 flex h-10 w-10 translate-y-28 cursor-pointer items-center justify-center rounded-full border-2 border-transparent bg-zinc-200 text-3xl opacity-0 transition-all transition-discrete duration-300 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12 dark:bg-zinc-700"
 		data-show="false"
@@ -95,4 +117,54 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 
 	const observer = new IntersectionObserver(callback);
 	observer.observe(targetHeader);
+
+	const projectContentEl = document.getElementById("project-content");
+	const lightboxEl = document.getElementById("project-image-lightbox");
+	const lightboxImageEl = document.getElementById("project-image-lightbox-image") as HTMLImageElement | null;
+	const lightboxCloseBtn = document.getElementById("project-image-lightbox-close");
+	let prevBodyOverflow = "";
+
+	if (projectContentEl && lightboxEl && lightboxImageEl && lightboxCloseBtn) {
+		const openLightbox = (src: string, alt: string) => {
+			prevBodyOverflow = document.body.style.overflow;
+			document.body.style.overflow = "hidden";
+			lightboxImageEl.src = src;
+			lightboxImageEl.alt = alt;
+			lightboxEl.classList.remove("hidden");
+			lightboxEl.classList.add("flex");
+			lightboxEl.setAttribute("aria-hidden", "false");
+		};
+
+		const closeLightbox = () => {
+			lightboxEl.classList.add("hidden");
+			lightboxEl.classList.remove("flex");
+			lightboxEl.setAttribute("aria-hidden", "true");
+			lightboxImageEl.src = "";
+			lightboxImageEl.alt = "";
+			document.body.style.overflow = prevBodyOverflow;
+		};
+
+		projectContentEl.addEventListener("click", (event) => {
+			const target = event.target as HTMLElement | null;
+			const imageEl = target?.closest("img") as HTMLImageElement | null;
+			if (!imageEl) return;
+			const parentLink = imageEl.closest("a");
+			if (parentLink) event.preventDefault();
+			const src = imageEl.currentSrc || imageEl.src;
+			if (!src) return;
+			openLightbox(src, imageEl.alt ?? "");
+		});
+
+		lightboxCloseBtn.addEventListener("click", closeLightbox);
+
+		lightboxEl.addEventListener("click", (event) => {
+			if (event.target === lightboxEl) closeLightbox();
+		});
+
+		window.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && lightboxEl.getAttribute("aria-hidden") === "false") {
+				closeLightbox();
+			}
+		});
+	}
 </script>
