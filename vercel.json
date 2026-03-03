@@ -1,4 +1,27 @@
 {
 	"installCommand": "pnpm install --no-frozen-lockfile",
-	"buildCommand": "pnpm build"
+	"buildCommand": "pnpm build",
+	"redirects": [
+		{
+			"source": "/index.htm",
+			"destination": "/",
+			"permanent": true
+		},
+		{
+			"source": "/index.html",
+			"destination": "/",
+			"permanent": true
+		},
+		{
+			"source": "/:path*",
+			"has": [
+				{
+					"type": "host",
+					"value": "www.danielz.co.uk"
+				}
+			],
+			"destination": "https://danielz.co.uk/:path*",
+			"permanent": true
+		}
+	]
 }
