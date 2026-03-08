@@ -3,6 +3,16 @@
 	"buildCommand": "pnpm build",
 	"redirects": [
 		{
+			"source": "/blog",
+			"destination": "/posts/",
+			"permanent": true
+		},
+		{
+			"source": "/cv",
+			"destination": "/about-me/",
+			"permanent": true
+		},
+		{
 			"source": "/index.htm",
 			"destination": "/",
 			"permanent": true
