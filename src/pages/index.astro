@@ -10,13 +10,15 @@ import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
 
 // Projects
-const MAX_PROJECTS = 6;
 const FEATURED_PROJECTS = 4;
+const MAX_TEXT_PROJECTS = 8;
 const allProjects = await getAllProjects();
 const allProjectsByDate = allProjects.sort(collectionDateSort) as CollectionEntry<"project">[];
-const latestProjects = allProjectsByDate.slice(0, MAX_PROJECTS);
-const featuredProjects = latestProjects.slice(0, FEATURED_PROJECTS);
-const remainingProjects = latestProjects.slice(FEATURED_PROJECTS);
+const featuredProjects = allProjectsByDate.slice(0, FEATURED_PROJECTS);
+const remainingProjects = allProjectsByDate.slice(
+	FEATURED_PROJECTS,
+	FEATURED_PROJECTS + MAX_TEXT_PROJECTS,
+);
 
 // Posts
 const MAX_POSTS = 10;
@@ -55,7 +57,7 @@ const pinnedPosts = allPostsByDate.filter((p) => p.data.pinned).slice(0, MAX_PIN
 			)
 		}
 		{
-			latestProjects.length > 0 && (
+			allProjectsByDate.length > 0 && (
 				<section class="mt-16">
 					<h2 class="title text-accent mb-6 text-xl">
 						<a href="/projects/">Projects</a>
