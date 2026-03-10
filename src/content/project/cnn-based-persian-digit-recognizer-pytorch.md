@@ -5,7 +5,7 @@ publishDate: "2026-03-09"
 coverImage:
   src: "./img/persian-digit-recognizer-cover.jpg"
   alt: "CNN-based Persian digit recognizer cover"
-tags: ["ai", "python"]
+tags: ["ai", "python", "pytorch", "deep-learning"]
 ---
 
 ## Role

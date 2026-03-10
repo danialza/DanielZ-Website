@@ -1,5 +1,5 @@
 ---
-title: "Ned3 Pro robot ob Mujoco"
+title: "Ned3 Pro robot on MuJoCo"
 description: "Independent MuJoCo execution path for Ned3 Pro on macOS with live bridge and camera output."
 publishDate: "2026-03-05"
 coverImage:
