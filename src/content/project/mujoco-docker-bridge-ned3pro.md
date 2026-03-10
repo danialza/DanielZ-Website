@@ -46,7 +46,3 @@ The official simulator path provided by **Niryo** was ROS1 + Gazebo.
 - Robotics
 - ROS Integration
 - Simulation Bridging
-
-## Timeline
-
-Mar 2026

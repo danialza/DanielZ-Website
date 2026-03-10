@@ -59,7 +59,3 @@ The video is played at **normal speed (1x)** and is **not accelerated**; this co
 - C#
 - WheelCollider Physics
 - Sensor-based Control Systems
-
-## Timeline
-
-16 Dec 2025
