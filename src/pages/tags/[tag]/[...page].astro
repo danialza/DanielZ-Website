@@ -29,8 +29,10 @@ const projectsWithTag = allProjects.filter((project) => project.data.tags.includ
 const TagContent = tagMeta ? (await render(tagMeta)).Content : null;
 
 const meta = {
-	description: tagMeta?.data.description ?? `View all posts and projects with the tag - ${tag}`,
-	title: tagMeta?.data.title ?? `Items about ${tag}`,
+	description:
+		tagMeta?.data.description ??
+		`Browse all Daniel Z projects and posts tagged "${tag}" across AI, robotics, and software engineering topics.`,
+	title: tagMeta?.data.title ?? `Tag: ${tag}`,
 };
 
 const sortedPosts = postsWithTag.sort(collectionDateSort);

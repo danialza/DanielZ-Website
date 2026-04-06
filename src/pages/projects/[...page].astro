@@ -28,8 +28,9 @@ interface Props {
 const { page, uniqueTags, pinnedProjects } = Astro.props;
 
 const meta = {
-	description: "A selection of projects I've built and shipped",
-	title: "Projects",
+	description:
+		"AI, robotics, and software engineering projects by Daniel Z, including production web systems, mobile apps, and autonomous systems work.",
+	title: "Projects: AI, Robotics, Web & Mobile",
 };
 
 const groupedByYear = groupProjectsByYear(page.data);

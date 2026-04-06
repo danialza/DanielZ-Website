@@ -29,8 +29,9 @@ interface Props {
 const { page, uniqueTags, pinnedPosts } = Astro.props;
 
 const meta = {
-	description: "Read my collection of posts and the things that interest me",
-	title: "Posts",
+	description:
+		"Technical blog posts by Daniel Z on AI, robotics, software engineering, and practical implementation notes from real projects.",
+	title: "Blog Posts",
 };
 
 const groupedByYear = groupPostsByYear(page.data);
