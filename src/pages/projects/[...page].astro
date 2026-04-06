@@ -2,13 +2,11 @@
 import type { CollectionEntry } from "astro:content";
 import type { GetStaticPaths, Page } from "astro";
 import ProjectPreview from "@/components/project/ProjectPreview.astro";
-import Pagination from "@/components/Paginator.astro";
 import { getAllProjects, getUniqueProjectTags, groupProjectsByYear } from "@/data/project";
 import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
 
 export const getStaticPaths = (async ({ paginate }) => {
-	const MAX_PROJECTS_PER_PAGE = 10;
 	const MAX_TAGS = 7;
 	const MAX_PINNED_PROJECTS = 3;
 	const allProjects = await getAllProjects();
@@ -16,7 +14,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 	const uniqueTags = getUniqueProjectTags(allProjects).slice(0, MAX_TAGS);
 	const pinnedProjects = allProjectsByDate.filter((p) => p.data.pinned).slice(0, MAX_PINNED_PROJECTS);
 	return paginate(allProjectsByDate, {
-		pageSize: MAX_PROJECTS_PER_PAGE,
+		pageSize: Math.max(allProjectsByDate.length, 1),
 		props: { uniqueTags, pinnedProjects },
 	});
 }) satisfies GetStaticPaths;
@@ -32,21 +30,6 @@ const { page, uniqueTags, pinnedProjects } = Astro.props;
 const meta = {
 	description: "A selection of projects I've built and shipped",
 	title: "Projects",
-};
-
-const paginationProps = {
-	...(page.url.prev && {
-		prevUrl: {
-			text: "← Previous Page",
-			url: page.url.prev,
-		},
-	}),
-	...(page.url.next && {
-		nextUrl: {
-			text: "Next Page →",
-			url: page.url.next,
-		},
-	}),
 };
 
 const groupedByYear = groupProjectsByYear(page.data);
@@ -90,7 +73,6 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 					</section>
 				))
 			}
-			<Pagination {...paginationProps} />
 		</div>
 		{
 			!!uniqueTags.length && (

@@ -5,7 +5,7 @@ publishDate: "2026-04-01"
 coverImage:
   src: "./img/ned3pro-rl-bundle-cover.png"
   alt: "Ned3 Pro real robot and DRL workspace"
-tags: ["reinforcement-learning", "robotics", "python"]
+tags: ["reinforcement-learning", "robotics", "python", "ros"]
 ---
 
 ## Role
