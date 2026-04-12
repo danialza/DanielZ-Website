@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="950" viewBox="0 0 1600 950">
+  <defs>
+    <style>
+      .title { font: 700 48px Arial, sans-serif; fill: #10293b; }
+      .label { font: 700 26px Arial, sans-serif; fill: #0f2436; }
+      .sub { font: 400 20px Arial, sans-serif; fill: #33556f; }
+      .cap { font: 400 22px Arial, sans-serif; fill: #45647d; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a7da0"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="950" fill="#eef6fb"/>
+  <text x="90" y="90" class="title">NSP Enquiry Workflow Flowchart</text>
+
+  <rect x="90" y="170" width="300" height="150" rx="18" fill="#d9ecfb" stroke="#6ea6cc" stroke-width="3"/>
+  <text x="130" y="240" class="label">Incoming Email</text>
+  <text x="130" y="275" class="sub">Customer request</text>
+
+  <rect x="470" y="170" width="300" height="150" rx="18" fill="#ddeff0" stroke="#74a7aa" stroke-width="3"/>
+  <text x="498" y="240" class="label">Load + Prompt Step</text>
+  <text x="520" y="275" class="sub">System + extraction prompt</text>
+
+  <rect x="850" y="170" width="300" height="150" rx="18" fill="#e7e7fb" stroke="#8b90d5" stroke-width="3"/>
+  <text x="920" y="240" class="label">LLM Extraction</text>
+  <text x="885" y="275" class="sub">Parse dimensions and needs</text>
+
+  <rect x="1230" y="170" width="280" height="150" rx="18" fill="#e3f5e9" stroke="#67b083" stroke-width="3"/>
+  <text x="1270" y="240" class="label">Structured JSON</text>
+  <text x="1272" y="275" class="sub">Standard schema output</text>
+
+  <polygon points="700,500 910,390 1120,500 910,610" fill="#fff4dc" stroke="#d4a44e" stroke-width="3"/>
+  <text x="835" y="495" class="label">Confidence</text>
+  <text x="828" y="530" class="label">Check</text>
+
+  <rect x="630" y="700" width="300" height="140" rx="18" fill="#fde7e7" stroke="#d68585" stroke-width="3"/>
+  <text x="690" y="770" class="label">Human Review</text>
+  <text x="680" y="805" class="sub">Fix missing details</text>
+
+  <rect x="1010" y="700" width="410" height="140" rx="18" fill="#e4f3ff" stroke="#76a5c9" stroke-width="3"/>
+  <text x="1060" y="770" class="label">ERP / MRP / CRM Intake</text>
+  <text x="1070" y="805" class="sub">Quote and operations handoff</text>
+
+  <line x1="390" y1="245" x2="470" y2="245" stroke="#4a7da0" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="770" y1="245" x2="850" y2="245" stroke="#4a7da0" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="1150" y1="245" x2="1230" y2="245" stroke="#4a7da0" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <line x1="1370" y1="320" x2="980" y2="430" stroke="#4a7da0" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="910" y1="610" x2="780" y2="700" stroke="#4a7da0" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="1010" y1="770" x2="930" y2="770" stroke="#4a7da0" stroke-width="5"/>
+  <line x1="1120" y1="500" x2="1210" y2="700" stroke="#4a7da0" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <text x="1145" y="610" class="cap">High confidence</text>
+  <text x="690" y="640" class="cap">Low confidence</text>
+</svg>
