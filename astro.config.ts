@@ -31,7 +31,7 @@ export default defineConfig({
 		sitemap({
 			filter: (page) => {
 				const url = page.toString();
-				return !url.includes("/notes/") && !url.endsWith("/about/");
+				return !url.includes("/notes/") && !url.endsWith("/about/") && !url.includes("/TalkingHeadAI/");
 			},
 		}),
 		mdx(),
