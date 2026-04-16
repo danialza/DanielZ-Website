@@ -1,6 +1,6 @@
 ---
 title: "NSP AI Enquiry Workflow"
-description: "A local Python prototype for enquiry-to-JSON extraction, later expanded with a lightweight web UI for faster operator use."
+description: "An AI enquiry-to-JSON system upgraded to FastAPI with local UI, Docker runtime, tests, and an evaluation starter."
 publishDate: "2026-04-03"
 coverImage:
   src: "./img/nsp-ai-enquiry-workflow-cover-v2.svg"
@@ -17,13 +17,17 @@ Developer - AI Workflow Prototyping
 This project delivers a practical AI-driven intake workflow for **NSP Cases**.
 It reads customer enquiry emails for custom flight cases, extracts technical/commercial details with an LLM, and outputs a clean JSON payload ready for downstream operations.
 
-After the initial version, the system was updated with a lightweight local web UI so the extraction workflow can be used directly from a browser.
+After the initial version, the system was upgraded to a service-style architecture with:
+- FastAPI backend endpoints
+- browser-based local UI
+- Docker and Compose runtime support
+- test and evaluation scaffolding for reliability
 
-The design was intentionally kept local, lightweight, and interview-ready:
-- Python entry point (`main.py`)
-- file-based prompts for fast prompt iteration
-- provider call isolated so other LLM providers can be added later
-- stable normalized output schema for ERP/MRP or CRM integration
+The design remains local, practical, and interview-ready:
+- core extraction logic isolated in `main.py`
+- prompt files externalized for fast iteration
+- provider abstraction for future model/provider swaps
+- stable normalized JSON schema for ERP/MRP integration
 
 ## Repository
 
@@ -44,10 +48,17 @@ The design was intentionally kept local, lightweight, and interview-ready:
 - JSON normalization and validation handling in Python
 - Structured output writing to `output/example_output.json`
 - Human-review-ready pattern via `missing_information` and `confidence`
-- Added local web UI (`app.py` + Flask) with:
-  - a single-page input/output screen
-  - `POST /api/extract` endpoint integration
-  - instant formatted JSON response for operations users
+- Added FastAPI service layer in `app.py` with:
+  - `POST /api/extract`
+  - `GET /health`
+  - `GET /version`
+- Added lightweight frontend (`templates/` + `static/`) for browser-based extraction usage
+- Added containerized runtime support:
+  - `Dockerfile`
+  - `docker-compose.yml`
+- Added quality and reliability scaffolding:
+  - API/unit tests in `tests/`
+  - evaluation starter in `evaluation/` (offline and live modes)
 
 ## Workflow Flowchart
 
@@ -64,14 +75,17 @@ The design was intentionally kept local, lightweight, and interview-ready:
 ## Key Outcomes
 
 - Converted unstructured enquiry text into a predictable business schema.
-- Improved readiness for scaling into larger quote/operations pipelines.
-- Kept architecture simple enough for hiring-task review while still production-minded in structure.
+- Evolved the prototype into a cleaner service baseline (CLI + API + UI).
+- Improved deployment and reproducibility with Docker/Compose support.
+- Added testing and evaluation hooks for safer iteration and future scaling.
 
 ## Skills
 
 - AI Workflow Design
 - Prompt Engineering
 - Python
+- FastAPI
 - API Integration
+- Docker
 - Data Structuring
-- Flask UI
+- Testing and Evaluation
