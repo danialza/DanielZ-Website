@@ -3,6 +3,16 @@
 	"buildCommand": "pnpm build",
 	"redirects": [
 		{
+			"source": "/TalkingHeadAI-LiveDemo/",
+			"destination": "https://audience-views-disposition-vehicle.trycloudflare.com",
+			"permanent": false
+		},
+		{
+			"source": "/TalkingHeadAI-LiveDemo",
+			"destination": "https://audience-views-disposition-vehicle.trycloudflare.com",
+			"permanent": false
+		},
+		{
 			"source": "/blog/",
 			"destination": "/posts/",
 			"permanent": true
