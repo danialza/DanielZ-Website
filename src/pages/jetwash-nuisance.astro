@@ -1,23 +1,23 @@
 ---
 const videos = [
 	{
-		title: "25 April",
-		src: "/videos/25-april.mov",
-		type: "video/quicktime",
+		title: "IMG_3596",
+		src: "/videos/img-3596-browser.mp4",
+		type: "video/mp4",
 	},
 	{
-		title: "IMG_3596",
-		src: "/videos/img-3596.mov",
-		type: "video/quicktime",
+		title: "25 April",
+		src: "/videos/25-april-browser.mp4",
+		type: "video/mp4",
 	},
 	{
 		title: "20 April",
-		src: "/videos/20-april.mov",
-		type: "video/quicktime",
+		src: "/videos/20-april-browser.mp4",
+		type: "video/mp4",
 	},
 	{
 		title: "11 April",
-		src: "/videos/11-april.mp4",
+		src: "/videos/11-april-browser.mp4",
 		type: "video/mp4",
 	},
 ];
@@ -87,7 +87,9 @@ const videos = [
 						<video controls preload="metadata">
 							<source src={video.src} type={video.type} />
 						</video>
-						<a href={video.src}>Open video</a>
+						<a href={video.src} download>
+							Save video
+						</a>
 					</section>
 				))
 			}
