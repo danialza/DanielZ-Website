@@ -1,0 +1,96 @@
+---
+const videos = [
+	{
+		title: "11 April",
+		src: "/videos/11-april.mp4",
+		type: "video/mp4",
+	},
+	{
+		title: "20 April",
+		src: "/videos/20-april.mov",
+		type: "video/quicktime",
+	},
+	{
+		title: "IMG_3596",
+		src: "/videos/img-3596.mov",
+		type: "video/quicktime",
+	},
+	{
+		title: "25 April",
+		src: "/videos/25-april.mov",
+		type: "video/quicktime",
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Videos</title>
+		<style>
+			:root {
+				color-scheme: light;
+				font-family:
+					Georgia, "Times New Roman", Times, serif;
+				background: #fafafa;
+				color: #111;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				padding: 32px 16px;
+				background: #fafafa;
+			}
+
+			main {
+				width: min(900px, 100%);
+				margin: 0 auto;
+			}
+
+			.video-item + .video-item {
+				margin-top: 40px;
+			}
+
+			h2 {
+				margin: 0 0 12px;
+				font-size: 22px;
+				font-weight: 500;
+			}
+
+			video {
+				display: block;
+				width: 100%;
+				background: #000;
+			}
+
+			a {
+				display: inline-block;
+				margin-top: 10px;
+				color: #111;
+				text-decoration: underline;
+				text-underline-offset: 3px;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			{
+				videos.map((video) => (
+					<section class="video-item">
+						<h2>{video.title}</h2>
+						<video controls preload="metadata">
+							<source src={video.src} type={video.type} />
+						</video>
+						<a href={video.src}>Open video</a>
+					</section>
+				))
+			}
+		</main>
+	</body>
+</html>
