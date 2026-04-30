@@ -32,7 +32,7 @@ These are the details that really matter when you want these systems to work at 
 ## Event video
 
 <video controls preload="metadata" style="width:100%; border-radius: 12px; margin-top: 0.5rem;">
-  <source src="./event-recap-video.mp4" type="video/mp4" />
+  <source src="/videos/heygen-london-event-recap.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
 
