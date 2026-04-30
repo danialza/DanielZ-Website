@@ -5,7 +5,7 @@ description: "A short recap of my experience at HeyGen's London pop-up and what 
 tags: ["ai", "generativeai", "digital-twin", "london"]
 coverImage:
   alt: "HeyGen pop-up experience in London"
-  src: "./event-photo-1.jpg"
+  src: "./event-photo-1.png"
 ---
 
 I attended HeyGen's **Infinitely Me** pop-up in London, and it was one of those events that stays with you.
@@ -25,9 +25,9 @@ These are the details that really matter when you want these systems to work at 
 
 ## Event moments
 
-![HeyGen London pop-up moment 1](./event-photo-1.jpg)
+![HeyGen London pop-up moment 1](./event-photo-1.png)
 
-![HeyGen London pop-up moment 2](./event-photo-2.jpg)
+![HeyGen London pop-up moment 2](./event-photo-2.png)
 
 ## Event video
 
