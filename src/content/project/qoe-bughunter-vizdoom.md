@@ -5,7 +5,7 @@ publishDate: "2026-04-17"
 coverImage:
   src: "./img/qoe-bughunter-vizdoom-cover.jpg"
   alt: "QoE-BugHunter VizDoom project cover"
-tags: ["ai", "python", "robotics", "game-testing"]
+tags: ["ai", "python", "robotics", "automation"]
 ---
 
 ## Role

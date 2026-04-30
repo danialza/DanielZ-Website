@@ -25,13 +25,18 @@ const allPosts = await getAllPosts();
 const allProjects = await getAllProjects();
 const postsWithTag = allPosts.filter((post) => post.data.tags.includes(tag));
 const projectsWithTag = allProjects.filter((project) => project.data.tags.includes(tag));
+const postCount = postsWithTag.length;
+const projectCount = projectsWithTag.length;
+const totalCount = postCount + projectCount;
+const itemLabel = totalCount === 1 ? "item" : "items";
+const seoIntro =
+	tagMeta?.data.description ??
+	`Discover ${totalCount} ${itemLabel} tagged "${tag}" on Daniel Z, including ${projectCount} projects and ${postCount} posts covering practical implementation, engineering workflows, and real-world results.`;
 
 const TagContent = tagMeta ? (await render(tagMeta)).Content : null;
 
 const meta = {
-	description:
-		tagMeta?.data.description ??
-		`Browse all Daniel Z projects and posts tagged "${tag}" across AI, robotics, and software engineering topics.`,
+	description: seoIntro,
 	title: tagMeta?.data.title ?? `Tag: ${tag}`,
 };
 
@@ -46,7 +51,7 @@ const combined = [
 <PageLayout meta={meta}>
 	<h1 class="title capitalize">{tagMeta?.data.title ?? `Items about ${tag}`}</h1>
 	<div class="prose prose-sm prose-cactus mb-16 max-w-none">
-		{tagMeta?.data.description && <p>{tagMeta.data.description}</p>}
+		<p>{seoIntro}</p>
 		{TagContent && <TagContent />}
 	</div>
 	<ul class="space-y-4">
