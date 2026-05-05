@@ -36,6 +36,13 @@ These are the details that really matter when you want these systems to work at 
   Your browser does not support the video tag.
 </video>
 
+## Vertical recap video
+
+<video controls preload="metadata" style="display:block; width:100%; max-width:420px; border-radius: 12px; margin: 0.75rem auto 0;">
+  <source src="/videos/heygen-london-vertical-recap.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
 ## Final thought
 
 Tools for digital identity are moving very quickly.
