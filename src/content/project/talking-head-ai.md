@@ -3,8 +3,8 @@ title: "TalkingHeadAI Conversational Avatar System"
 description: "A real-time voice and text conversational avatar platform with two-mode retrieval routing, long-term memory, and reviewer feedback loops."
 publishDate: "2026-04-16"
 coverImage:
-  src: "./img/talkingheadai-cover.svg"
-  alt: "TalkingHeadAI system cover"
+  src: "./img/talkingheadai-architecture-overview.png"
+  alt: "TalkingHeadAI architecture overview diagram"
 tags: ["ai", "python", "automation"]
 ---
 
@@ -34,47 +34,67 @@ The platform combines speech-to-text, routing, retrieval, generation, text-to-sp
 - Avatar rendering: D-ID streaming mode with offline fallback path
 - Runtime and local orchestration: Docker Compose
 
-## Architecture Overview
+## System Diagrams
 
-![TalkingHeadAI architecture](./img/talkingheadai-architecture-flow.svg)
+### 1) System Architecture Overview
 
-The architecture separates concerns into a frontend interaction layer, an orchestration backend, persistent data stores, and pluggable external AI services. This structure keeps provider changes isolated from core business logic.
+![TalkingHeadAI architecture overview](./img/talkingheadai-architecture-overview.png)
 
-## End-to-End Request Flow
+This diagram shows the full component map:
+- Frontend layer: Next.js App Router + Tailwind + WebSocket client.
+- Backend layer: FastAPI server with orchestrator, query router, RAG pipeline, KB manager, REST and WebSocket APIs, and worker services.
+- Data layer: PostgreSQL, Qdrant, and Redis with clear service ports.
+- External providers: Deepgram (STT), Claude (LLM), ElevenLabs (TTS), D-ID (avatar), and OpenAI embeddings.
 
-![TalkingHeadAI request flow](./img/talkingheadai-request-flow.svg)
+It explains how boundaries are defined between product UI, decision logic, stateful storage, and AI provider integrations.
 
-Main flow steps:
-- Accept user voice or text input.
-- Convert voice to text (or pass through plain text).
-- Run orchestrator checks and context enrichment.
-- Route request by similarity confidence.
-- Generate final text response.
-- Convert response to speech and stream through avatar output.
+### 2) Request Flow: Voice to Avatar Response
 
-## Two-Mode Routing Logic
+![TalkingHeadAI request flow](./img/talkingheadai-request-flow.png)
 
-![TalkingHeadAI two-mode routing](./img/talkingheadai-two-mode-routing.svg)
+This flow shows the runtime sequence for one user interaction:
+- User audio enters through microphone and browser WebSocket.
+- STT converts speech to text and passes it to the orchestrator.
+- Query embedding + router decide between Case A and Case B.
+- Output text goes through TTS and then avatar video rendering.
+- Final response is delivered back to the browser as synchronized audio/video.
 
-Routing is based on similarity threshold:
-- Case B (known): if confidence is above threshold, return reviewed knowledge-base answers directly.
-- Case A (new): if confidence is below threshold, build context via retrieval and generate response with the LLM.
+The latency notes in the diagram clarify where response time is spent across STT, routing, generation, TTS, and avatar rendering.
 
-This design keeps high-confidence answers deterministic while still supporting open queries.
+### 3) Two-Mode Answering: Query Routing Logic
 
-## Memory and Quality Loops
+![TalkingHeadAI two-mode routing](./img/talkingheadai-two-mode-routing.png)
 
-![TalkingHeadAI memory and quality loop](./img/talkingheadai-memory-quality-loop.svg)
+This diagram explains the retrieval threshold strategy:
+- User query is embedded and searched against `approved_qa` in Qdrant.
+- If similarity score is above threshold (`>= 0.85`), the system runs Case B and returns approved knowledge.
+- If below threshold, it runs Case A, pulls `session_chunks` + approved context, calls the LLM, and stores unresolved items in `unanswered_pool`.
 
-Loop A (memory personalization):
-- Extract user facts from conversation context.
-- Persist structured facts in PostgreSQL.
-- Inject relevant memory into future prompts.
+It documents why the system can stay reliable for known questions while still handling new questions dynamically.
 
-Loop B (quality improvement):
-- Capture low-confidence or unanswered queries.
-- Queue and review them in the reviewer workflow.
-- Approve and re-index answers into the knowledge base.
+### 4) Knowledge Quality Loop
+
+![TalkingHeadAI knowledge quality loop](./img/talkingheadai-mentor-quality-loop.png)
+
+This loop shows how unanswered questions become reusable knowledge:
+- New/low-confidence queries are saved to `unanswered_pool`.
+- Reviewer dashboard is used for answer, dismiss, or split actions.
+- Approved answers are inserted into `qa_pairs` and upserted to Qdrant.
+- Future similar queries increasingly hit Case B, reducing ambiguity and response variance over time.
+
+It captures the continuous improvement mechanism of the platform's knowledge base.
+
+### 5) User Memory Feature: Extraction and Recall
+
+![TalkingHeadAI user memory flow](./img/talkingheadai-memory-flow.png)
+
+This diagram describes personalized memory behavior:
+- During interaction, facts are extracted asynchronously (non-blocking path) while normal response continues.
+- Structured facts are persisted in `user_facts` with upsert logic.
+- On later interactions, user facts are loaded and injected into the system prompt before generation.
+- Frontend memory card supports user visibility and safe reset actions.
+
+It explains how personalization is implemented without adding blocking latency to the main conversation path.
 
 ## Core Backend Responsibilities
 
