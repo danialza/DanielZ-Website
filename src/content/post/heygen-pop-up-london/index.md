@@ -31,14 +31,14 @@ These are the details that really matter when you want these systems to work at 
 
 ## Event video
 
-<video controls preload="metadata" style="width:100%; border-radius: 12px; margin-top: 0.5rem;">
+<video controls preload="metadata" poster="/videos/heygen-london-event-recap-cover.jpg" style="width:100%; border-radius: 12px; margin-top: 0.5rem;">
   <source src="/videos/heygen-london-event-recap.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
 
 ## Vertical recap video
 
-<video controls preload="metadata" style="display:block; width:100%; max-width:420px; border-radius: 12px; margin: 0.75rem auto 0;">
+<video controls preload="metadata" poster="/videos/heygen-london-vertical-recap-cover.jpg" style="display:block; width:100%; max-width:420px; border-radius: 12px; margin: 0.75rem auto 0;">
   <source src="/videos/heygen-london-vertical-recap.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
