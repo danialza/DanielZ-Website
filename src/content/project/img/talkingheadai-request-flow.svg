@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="950" viewBox="0 0 1600 950" role="img" aria-labelledby="title desc">
+  <title id="title">TalkingHeadAI Request Flow</title>
+  <desc id="desc">End-to-end flow from user speech or text to avatar response.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#121826"/>
+      <stop offset="100%" stop-color="#1f2a44"/>
+    </linearGradient>
+    <linearGradient id="node" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#243a5a"/>
+      <stop offset="100%" stop-color="#1b2e48"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="950" fill="url(#bg)"/>
+  <text x="70" y="95" fill="#e8efff" font-size="54" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="800">Request Flow: Voice/Text to Talking Avatar</text>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <rect x="120" y="180" width="240" height="110" rx="16" fill="url(#node)" stroke="#86b6ff"/>
+    <text x="155" y="246" fill="#dce9ff" font-size="28" font-weight="700">User Input</text>
+
+    <rect x="460" y="180" width="250" height="110" rx="16" fill="url(#node)" stroke="#86b6ff"/>
+    <text x="540" y="246" fill="#dce9ff" font-size="28" font-weight="700" text-anchor="middle">STT / Text</text>
+
+    <rect x="810" y="180" width="300" height="110" rx="16" fill="url(#node)" stroke="#86b6ff"/>
+    <text x="960" y="246" fill="#dce9ff" font-size="28" font-weight="700" text-anchor="middle">Orchestrator</text>
+
+    <rect x="1210" y="180" width="260" height="110" rx="16" fill="url(#node)" stroke="#86b6ff"/>
+    <text x="1340" y="246" fill="#dce9ff" font-size="28" font-weight="700" text-anchor="middle">Query Router</text>
+
+    <rect x="410" y="420" width="340" height="120" rx="16" fill="url(#node)" stroke="#7fe2c1"/>
+    <text x="580" y="488" fill="#d9fff2" font-size="26" font-weight="700" text-anchor="middle">Case B: Known Answer</text>
+
+    <rect x="860" y="420" width="340" height="120" rx="16" fill="url(#node)" stroke="#ffc78b"/>
+    <text x="1030" y="488" fill="#ffefd8" font-size="26" font-weight="700" text-anchor="middle">Case A: RAG + LLM</text>
+
+    <rect x="630" y="650" width="360" height="120" rx="16" fill="url(#node)" stroke="#86b6ff"/>
+    <text x="810" y="718" fill="#dce9ff" font-size="26" font-weight="700" text-anchor="middle">TTS + Avatar Streaming</text>
+  </g>
+
+  <g stroke="#b3d2ff" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M360 235 L460 235"/>
+    <path d="M710 235 L810 235"/>
+    <path d="M1110 235 L1210 235"/>
+    <path d="M1340 290 L580 420"/>
+    <path d="M1340 290 L1030 420"/>
+    <path d="M580 540 L760 650"/>
+    <path d="M1030 540 L860 650"/>
+  </g>
+</svg>

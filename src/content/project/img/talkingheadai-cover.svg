@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="950" viewBox="0 0 1600 950" role="img" aria-labelledby="title desc">
+  <title id="title">TalkingHeadAI Cover</title>
+  <desc id="desc">TalkingHeadAI project cover with system blocks and automation pipeline visual.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="50%" stop-color="#10233e"/>
+      <stop offset="100%" stop-color="#1b2f4f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#93c5fd"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="950" fill="url(#bg)"/>
+
+  <text x="88" y="150" fill="#ecf5ff" font-size="86" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="800">TalkingHeadAI</text>
+  <text x="88" y="208" fill="#9ec4ff" font-size="34" font-family="Inter, Segoe UI, Arial, sans-serif">Real-time Conversational Avatar System</text>
+  <rect x="88" y="236" width="760" height="8" rx="4" fill="url(#accent)"/>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <rect x="120" y="320" width="280" height="110" rx="16" fill="#1b3557" stroke="#7fb5ff"/>
+    <text x="260" y="385" fill="#dcecff" font-size="28" text-anchor="middle" font-weight="700">User Voice / Text</text>
+
+    <rect x="470" y="320" width="320" height="110" rx="16" fill="#1b3557" stroke="#7fb5ff"/>
+    <text x="630" y="385" fill="#dcecff" font-size="28" text-anchor="middle" font-weight="700">Orchestrator API</text>
+
+    <rect x="860" y="320" width="260" height="110" rx="16" fill="#1b3557" stroke="#7fb5ff"/>
+    <text x="990" y="385" fill="#dcecff" font-size="28" text-anchor="middle" font-weight="700">RAG Router</text>
+
+    <rect x="1190" y="320" width="290" height="110" rx="16" fill="#1b3557" stroke="#7fb5ff"/>
+    <text x="1335" y="385" fill="#dcecff" font-size="28" text-anchor="middle" font-weight="700">TTS + Avatar</text>
+
+    <rect x="260" y="560" width="320" height="110" rx="16" fill="#17334f" stroke="#6ee7b7"/>
+    <text x="420" y="625" fill="#ddfff2" font-size="26" text-anchor="middle" font-weight="700">PostgreSQL Memory</text>
+
+    <rect x="650" y="560" width="280" height="110" rx="16" fill="#17334f" stroke="#6ee7b7"/>
+    <text x="790" y="625" fill="#ddfff2" font-size="26" text-anchor="middle" font-weight="700">Qdrant KB</text>
+
+    <rect x="1000" y="560" width="280" height="110" rx="16" fill="#17334f" stroke="#6ee7b7"/>
+    <text x="1140" y="625" fill="#ddfff2" font-size="26" text-anchor="middle" font-weight="700">Redis Queue</text>
+  </g>
+
+  <g stroke="#a8ccff" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M400 375 L470 375"/>
+    <path d="M790 375 L860 375"/>
+    <path d="M1120 375 L1190 375"/>
+    <path d="M630 430 L420 560"/>
+    <path d="M750 430 L790 560"/>
+    <path d="M900 430 L1140 560"/>
+  </g>
+</svg>

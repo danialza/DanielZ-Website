@@ -1,14 +1,14 @@
 # TalkingHeadAI
 
-Real-time conversational talking-head agent for **Primentoring AI**.  
-Users ask questions by voice or text, and the system responds with a lip-synced avatar using mentor-approved answers.
+Real-time conversational talking-head agent for guided Q&A experiences.  
+Users ask questions by voice or text, and the system responds with a lip-synced avatar using approved answers.
 
 ## What It Does
 
 - **Voice conversation** with a real-time talking-head avatar (Noor)
 - **Two-mode answering**: approved mentor answers (Case B) vs. RAG-generated responses (Case A)
 - **Long-term user memory**: remembers name, job, experience level across sessions
-- **Mentor dashboard**: review unanswered questions, grow the knowledge base, tune thresholds
+- **Reviewer dashboard**: review unanswered questions, grow the knowledge base, tune thresholds
 - **Pluggable AI providers**: swap between cloud and self-hosted services via env vars
 - **Bilingual**: Persian RTL (Vazirmatn font) + English LTR auto-detection
 
@@ -74,35 +74,35 @@ Deepgram STT --> Orchestrator --> Embed query (OpenAI)
 <details>
 <summary>🏗️ Architecture Overview</summary>
 
-![Architecture Overview](https://raw.githubusercontent.com/danialza/TalkingHeadAI/main/assets/diagrams/architecture-overview.png)
+![Architecture Overview](/images/talking-head-ai/architecture-overview.svg)
 
 </details>
 
 <details>
 <summary>🔀 Request Flow: Voice to Avatar</summary>
 
-![Request Flow](https://raw.githubusercontent.com/danialza/TalkingHeadAI/main/assets/diagrams/request-flow.png)
+![Request Flow](/images/talking-head-ai/request-flow.svg)
 
 </details>
 
 <details>
 <summary>🎯 Two-Mode Query Routing</summary>
 
-![Two-Mode Routing](https://raw.githubusercontent.com/danialza/TalkingHeadAI/main/assets/diagrams/two-mode-routing.png)
+![Two-Mode Routing](/images/talking-head-ai/two-mode-routing.svg)
 
 </details>
 
 <details>
 <summary>🧠 User Memory Flow</summary>
 
-![Memory Flow](https://raw.githubusercontent.com/danialza/TalkingHeadAI/main/assets/diagrams/memory-flow.png)
+![Memory Flow](/images/talking-head-ai/memory-quality-loop.svg)
 
 </details>
 
 <details>
-<summary>🔄 Mentor Quality Loop</summary>
+<summary>🔄 Knowledge Quality Loop</summary>
 
-![Mentor Quality Loop](https://raw.githubusercontent.com/danialza/TalkingHeadAI/main/assets/diagrams/mentor-quality-loop.png)
+![Knowledge Quality Loop](/images/talking-head-ai/memory-quality-loop.svg)
 
 </details>
 
@@ -110,9 +110,9 @@ Deepgram STT --> Orchestrator --> Embed query (OpenAI)
 
 The system automatically extracts personal facts (name, job, experience level) from conversations using Claude, stores them in PostgreSQL, and injects them into future prompts for personalized responses.
 
-### Mentor Quality Loop
+### Knowledge Quality Loop
 
-Unanswered questions are clustered semantically and queued for mentor review. When a mentor answers, the response enters the knowledge base. Next time someone asks the same question, it gets the authoritative answer directly.
+Unanswered questions are clustered semantically and queued for expert review. When a reviewed answer is approved, the response enters the knowledge base. Next time someone asks the same question, it gets the authoritative answer directly.
 
 ## Quick Start
 
@@ -220,7 +220,7 @@ TalkingHeadAI/
 
 | Table | Purpose |
 |-------|---------|
-| `qa_pairs` | Mentor-approved Q&A knowledge base |
+| `qa_pairs` | Reviewed Q&A knowledge base |
 | `unanswered_pool` | Questions pending mentor review |
 | `session_transcripts` | Ingested mentor-mentee transcripts |
 | `conversations` | Full conversation logs |
@@ -235,7 +235,7 @@ TalkingHeadAI/
 
 ## Key Features
 
-### Mentor Dashboard
+### Reviewer Dashboard
 
 - **Unanswered Pool**: Semantically clustered questions with search, sort, bulk answer, split variants
 - **Knowledge Base**: Browse/edit/search approved Q&A pairs
@@ -264,11 +264,11 @@ EMBEDDING_PROVIDER=openai   # or local
 | `GET` | `/api/knowledge` | List Q&A pairs |
 | `POST` | `/api/knowledge` | Add Q&A pair |
 | `GET` | `/api/mentor/unanswered/grouped` | Clustered unanswered questions |
-| `POST` | `/api/mentor/answer/{id}` | Mentor answers a question |
+| `POST` | `/api/mentor/answer/{id}` | Expert reviewer answers a question |
 | `GET` | `/api/user/{user_id}/facts` | Get user memory facts |
 | `DELETE` | `/api/user/{user_id}/facts` | Reset user memory |
 | `GET` | `/api/health` | System health check |
 
 ## License
 
-Private project for Primentoring AI.
+Private project implementation reference.
