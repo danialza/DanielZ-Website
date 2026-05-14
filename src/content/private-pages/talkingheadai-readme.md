@@ -1,14 +1,14 @@
 # TalkingHeadAI
 
-Real-time conversational talking-head agent for guided Q&A experiences.  
-Users ask questions by voice or text, and the system responds with a lip-synced avatar using approved answers.
+Real-time conversational talking-head mentor agent.  
+Users ask questions by voice or text, and the system responds with a lip-synced avatar using mentor-approved answers.
 
 ## What It Does
 
 - **Voice conversation** with a real-time talking-head avatar (Noor)
 - **Two-mode answering**: approved mentor answers (Case B) vs. RAG-generated responses (Case A)
 - **Long-term user memory**: remembers name, job, experience level across sessions
-- **Reviewer dashboard**: review unanswered questions, grow the knowledge base, tune thresholds
+- **Mentor dashboard**: review unanswered questions, grow the knowledge base, tune thresholds
 - **Pluggable AI providers**: swap between cloud and self-hosted services via env vars
 - **Bilingual**: Persian RTL (Vazirmatn font) + English LTR auto-detection
 
@@ -74,35 +74,35 @@ Deepgram STT --> Orchestrator --> Embed query (OpenAI)
 <details>
 <summary>🏗️ Architecture Overview</summary>
 
-![Architecture Overview](/images/talking-head-ai/architecture-overview.svg)
+![Architecture Overview](/images/talking-head-ai/architecture-overview.png)
 
 </details>
 
 <details>
 <summary>🔀 Request Flow: Voice to Avatar</summary>
 
-![Request Flow](/images/talking-head-ai/request-flow.svg)
+![Request Flow](/images/talking-head-ai/request-flow.png)
 
 </details>
 
 <details>
 <summary>🎯 Two-Mode Query Routing</summary>
 
-![Two-Mode Routing](/images/talking-head-ai/two-mode-routing.svg)
+![Two-Mode Routing](/images/talking-head-ai/two-mode-routing.png)
 
 </details>
 
 <details>
 <summary>🧠 User Memory Flow</summary>
 
-![Memory Flow](/images/talking-head-ai/memory-quality-loop.svg)
+![Memory Flow](/images/talking-head-ai/memory-flow.png)
 
 </details>
 
 <details>
-<summary>🔄 Knowledge Quality Loop</summary>
+<summary>🔄 Mentor Quality Loop</summary>
 
-![Knowledge Quality Loop](/images/talking-head-ai/memory-quality-loop.svg)
+![Mentor Quality Loop](/images/talking-head-ai/mentor-quality-loop.png)
 
 </details>
 
@@ -110,9 +110,9 @@ Deepgram STT --> Orchestrator --> Embed query (OpenAI)
 
 The system automatically extracts personal facts (name, job, experience level) from conversations using Claude, stores them in PostgreSQL, and injects them into future prompts for personalized responses.
 
-### Knowledge Quality Loop
+### Mentor Quality Loop
 
-Unanswered questions are clustered semantically and queued for expert review. When a reviewed answer is approved, the response enters the knowledge base. Next time someone asks the same question, it gets the authoritative answer directly.
+Unanswered questions are clustered semantically and queued for mentor review. When a mentor answers, the response enters the knowledge base. Next time someone asks the same question, it gets the authoritative answer directly.
 
 ## Quick Start
 
@@ -220,7 +220,7 @@ TalkingHeadAI/
 
 | Table | Purpose |
 |-------|---------|
-| `qa_pairs` | Reviewed Q&A knowledge base |
+| `qa_pairs` | Mentor-approved Q&A knowledge base |
 | `unanswered_pool` | Questions pending mentor review |
 | `session_transcripts` | Ingested mentor-mentee transcripts |
 | `conversations` | Full conversation logs |
@@ -235,19 +235,20 @@ TalkingHeadAI/
 
 ## Key Features
 
-### Reviewer Dashboard
+### Mentor Dashboard
 
 - **Unanswered Pool**: Semantically clustered questions with search, sort, bulk answer, split variants
-- **Knowledge Base**: Browse/edit/search approved Q&A pairs
-- **Quick Test**: Test Case A/B routing directly
+- **Knowledge Base**: Browse / edit / **delete** approved Q&A pairs (writes propagate to Qdrant)
+- **Transcript Ingestion**: Paste text **or** upload `.txt` / `.md` / `.pdf` / `.docx` / `.pptx` (max 25 MB) — text extracted, chunked, embedded in seconds
+- **RAG Index**: Inspect every indexed source grouped by title; expand to view individual chunks; delete by source, by chunk, or wipe all
+- **Quick Test**: Fire questions at `/api/chat` directly to see Case A/B routing
 - **Threshold Tuning**: Data-driven similarity threshold recommendations
-- **Transcript Ingestion**: Upload mentor-mentee session transcripts
 
 ### Pluggable Providers
 
 Every external service has cloud + self-hosted options, swappable via env var:
 
-```env
+```txt
 LLM_PROVIDER=claude        # or ollama
 STT_PROVIDER=deepgram       # or whisper
 TTS_PROVIDER=elevenlabs     # or coqui
@@ -259,16 +260,55 @@ EMBEDDING_PROVIDER=openai   # or local
 
 | Method | Path | Description |
 |--------|------|-------------|
-| `POST` | `/api/chat` | Text chat (returns response + case + confidence) |
+| `POST` | `/api/chat` | Text chat (returns response + case + confidence + ask_count) |
 | `WS` | `/api/ws/{session_id}` | Real-time voice conversation |
 | `GET` | `/api/knowledge` | List Q&A pairs |
 | `POST` | `/api/knowledge` | Add Q&A pair |
+| `PATCH` | `/api/knowledge/{id}` | Edit Q&A (re-indexes Qdrant) |
+| `DELETE` | `/api/knowledge/{id}` | Delete Q&A from Postgres + Qdrant |
 | `GET` | `/api/mentor/unanswered/grouped` | Clustered unanswered questions |
-| `POST` | `/api/mentor/answer/{id}` | Expert reviewer answers a question |
+| `POST` | `/api/mentor/answer/{id}` | Mentor answers a question |
+| `POST` | `/api/mentor/transcript` | Submit raw transcript text |
+| `POST` | `/api/mentor/transcript/upload` | Upload file (txt / md / pdf / docx / pptx) |
+| `GET` | `/api/mentor/rag/sources` | List indexed sources grouped by title |
+| `GET` | `/api/mentor/rag/chunks?title=…` | List chunks for one source |
+| `DELETE` | `/api/mentor/rag/sources?title=…` | Remove all chunks for a source |
+| `DELETE` | `/api/mentor/rag/chunks/{id}` | Delete a single chunk |
+| `DELETE` | `/api/mentor/rag/all` | Wipe `session_chunks` (irreversible) |
 | `GET` | `/api/user/{user_id}/facts` | Get user memory facts |
 | `DELETE` | `/api/user/{user_id}/facts` | Reset user memory |
 | `GET` | `/api/health` | System health check |
 
+## Demo Bundle
+
+`demo/university/` ships a runnable scenario for showing the system to a university audience: a sample lecture transcript, course syllabus, 10 pre-built Q&A pairs, a seed script, and a scene-by-scene recording guide.
+
+```bash
+# After ./run.sh is up:
+.venv/bin/python demo/university/seed_university_kb.py
+# Then in the mentor dashboard → Transcripts → upload the .txt / .md files.
+```
+
+## Reset / Inspect
+
+```bash
+# Wipe content (keep schema)
+docker exec -it talkinghead-postgres-1 psql -U thuser -d talkinghead -c \
+  "TRUNCATE qa_pairs, unanswered_pool, conversations, user_facts CASCADE;"
+curl -X DELETE http://localhost:6333/collections/approved_qa
+curl -X DELETE http://localhost:6333/collections/session_chunks
+docker exec -it talkinghead-redis-1 redis-cli FLUSHDB
+
+# Factory reset — drop volumes
+docker compose down -v
+```
+
+Inspection URLs:
+- Mentor dashboard: <http://localhost:3000/mentor>
+- Qdrant dashboard: <http://localhost:6333/dashboard>
+- Postgres tables: `docker exec -it talkinghead-postgres-1 psql -U thuser -d talkinghead`
+- Redis keys: `docker exec -it talkinghead-redis-1 redis-cli KEYS '*'`
+
 ## License
 
-Private project implementation reference.
+Private project.
