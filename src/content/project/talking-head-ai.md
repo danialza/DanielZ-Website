@@ -1,5 +1,5 @@
 ---
-title: "TalkingHeadAI Conversational Avatar System"
+title: "TalkingHeadAI - Digital Clone with Personal Context"
 description: "A real-time voice and text talking-head mentor platform with two-mode retrieval routing, long-term memory, bilingual UI, and mentor knowledge workflows."
 publishDate: "2026-04-16"
 coverImage:
