@@ -22,12 +22,12 @@ const { as: Tag = "div", project, withDesc = false, withThumbnail = false } = As
 		withThumbnail && project.data.coverImage && (
 			<a
 				aria-label={`Open ${project.data.title}`}
-				class="mt-0.5 flex h-14 w-20 shrink-0 items-center justify-center overflow-hidden rounded-md bg-black/5 dark:bg-white/10"
+				class="mt-0.5 flex h-14 w-20 shrink-0 items-center justify-center"
 				href={`/projects/${project.id}/`}
 			>
 				<Image
 					alt={project.data.coverImage.alt}
-					class="h-full w-full object-contain"
+					class="max-h-full max-w-full object-contain"
 					height={112}
 					src={project.data.coverImage.src}
 					width={160}
