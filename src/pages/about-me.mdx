@@ -1,147 +1,156 @@
 ---
 title: "About Me"
-description: "About Daniel Z: senior web and app developer focused on AI, robotics, DRL, ROS, and scalable product engineering."
+description: "About Daniel Z: applied AI, robotics, RAG, agentic systems, web platforms, and product engineering."
 ---
 import PageLayout from "@/layouts/Base.astro";
-import TOC from "@/components/blog/TOC.astro";
 
 <PageLayout meta={{ title: frontmatter.title, description: frontmatter.description }}>
-    <div class="prose prose-sm prose-cactus max-w-none text-justify">
-        ### About Me
+	<div class="prose prose-sm prose-cactus max-w-none text-justify">
 		# Danial Zafaranchizadeh Moghaddam
-		## Senior Web & App Developer | MSc AI & Robotics | DRL & ROS Enthusiast
+
+		## Applied AI, Robotics & Software Engineer
+
 		London, United Kingdom
-		
-		I am a Senior Web and App Developer with over seven years of professional experience. Currently, I am pursuing an MSc in Artificial Intelligence and Robotics at the University of Hertfordshire. I specialize in building high-performance applications and exploring the development of intelligent agents. I specialize in architecting agentic workflows and autonomous systems. My goal is to bridge the gap between robust software engineering and the cutting edge of AI and Robotics.
-		___
-		
-		## Areas of Expertise
 
-		### AI & Autonomous Systems
-		- **Agentic Workflows:** Designing multi-agent systems and autonomous task automation.
-		- **Deep Reinforcement Learning (DRL):** Training models with complex reward functions.
-		- **Robot Operating System (ROS):** Developing software for robotic perception, control, and simulation.
-		- **Neural Networks & NLP:** Implementing Transformers and specialized text classification models.
+		I am an applied AI, robotics, and software engineer with a practical background in building real systems: AI workflows, RAG pipelines, backend services, robotics experiments, simulation environments, web platforms, and mobile products. My MSc in Artificial Intelligence and Robotics at the University of Hertfordshire was awarded with Distinction, and my work now sits at the intersection of intelligent systems, robotics, and product-focused engineering.
 
-		### Web & CMS Development
-		- **Custom WordPress & CMS:** Experienced in building responsive websites with custom themes and plugins, managing dynamic content using WordPress and other CMS platforms.
-		- **E-commerce Systems:** Developing scalable online stores with a focus on conversion and performance.
-		- **Full-Stack Architecture:** Crafting modern interfaces using JavaScript, PHP, and scalable backend logic.
+		My portfolio is split across [AI and automation projects](/projects/), robotics experiments, research-focused prototypes, and production web/app systems. I like work where ambiguity has to become a working system: a pipeline, a robot experiment, a dashboard, a retrieval layer, or a product that people can actually use.
 
-		### Software Engineering
-		- **Mobile Development:** Building cross-platform apps using Flutter and Dart for iOS and Android.
-		- **Performance Engineering:** Optimizing speed and efficiency for web and mobile platforms.
-		- **Version Control & DevOps:** Managing complex codebases with Git and modern deployment workflows.
+		---
 
-		### Growth & Optimization
-		- **UX/UI Strategy:** Crafting user-centered designs to improve engagement and retention.
-		- **Technical SEO:** Implementing advanced search engine optimization at the code level.
-		- **Digital Systems:** Integrating e-commerce and marketing tools into technical platforms.
+		## Current Focus
+
+		### Applied AI & Agentic Systems
+
+		I build systems that combine LLMs, retrieval, structured prompting, tool-calling patterns, and explainable workflows. Recent examples include [TalkingHeadAI](/projects/talking-head-ai/), a real-time conversational mentor platform with retrieval routing, long-term memory, bilingual interaction, and a mentor dashboard; and the [NSP AI Enquiry Workflow](/projects/nsp-ai-enquiry-workflow/), which converts unstructured customer enquiries into structured JSON for operational use.
+
+		I also work on agent-style systems for evaluation and automation, such as [QoE-BugHunter (VizDoom)](/projects/qoe-bughunter-vizdoom/), a multi-agent prototype for discovering, verifying, and reporting reproducible quality-of-experience issues in 3D environments.
+
+		### Robotics, Simulation & Reinforcement Learning
+
+		My robotics work is hands-on and experiment-driven. I built the [Ned3 Pro DRL Sim-to-Real Reaching](/projects/ned3pro-mujoco-rl-bundle/) pipeline using SAC+HER, MuJoCo, ROS, and real-hardware validation. I also developed a [Ned3 Pro Adaptive Controller](/projects/ned3pro-adaptive-controller/) for current-mode actuation when a direct torque interface was not available.
+
+		To support repeatable robotics experimentation, I built a [MuJoCo Docker Bridge for Ned3 Pro](/projects/mujoco-docker-bridge-ned3pro/) and university simulation projects such as [Robotic Navigation in Unity](/projects/robotic-navigation/) and [Agent Based Modelling](/projects/agent-based-disease-modelling-netlogo/).
+
+		### AI/ML Engineering
+
+		I work with Python, PyTorch, FastAPI, vector databases, Docker, and structured evaluation workflows. One example is the [CNN-based Persian Digit Recognizer](/projects/cnn-based-persian-digit-recognizer-pytorch/), a PyTorch image-classification pipeline with training, evaluation, inference, and confusion-matrix reporting.
+
+		### Web, Mobile & Commerce Systems
+
+		Before moving deeper into AI and robotics, I spent years building production web and app systems. My commerce work includes [Anotah Multi-Region E-commerce Website](/projects/anotah-website/), [Anotah Mobile App](/projects/anotah-mobile-app/), [Eleganza Concept Website](/projects/eleganza-concept/), [Nil Home E-commerce Website](/projects/nil-home/), and [Pasha Group Websites](/projects/pasha-group-websites/). These projects shaped how I think about performance, user flow, content operations, SEO, and maintainable product delivery.
+
+		---
+
+		## Selected Technical Skills
+
+		### Languages & Backend
+
+		- **Python, C#, C++, SQL, JavaScript, PHP, Dart**
+		- **FastAPI, Flask, REST APIs, service-oriented workflow design**
+		- **PostgreSQL, Redis, SQLite, Qdrant, FAISS**
+		- **Docker, Git, Linux/Ubuntu**
+
+		### AI, ML & LLM Systems
+
+		- **PyTorch, CNNs, NumPy, Pandas, scikit-learn**
+		- **RAG, embeddings, semantic search, vector databases**
+		- **Prompt engineering, structured prompting, tool-calling patterns**
+		- **Agentic workflows, memory-aware systems, explainable AI outputs**
+
+		### Robotics & Simulation
+
+		- **MuJoCo, Unity, ROS 1, ROS 2**
+		- **Reinforcement learning, SAC+HER, reward shaping, sim-to-real evaluation**
+		- **Robotics debugging, experiment design, real-hardware validation**
+		- **Robotic 3D design and STL-oriented prototyping**
+
+		### Product Engineering
+
+		- **WordPress, WooCommerce, custom CMS workflows**
+		- **Flutter mobile apps for iOS and Android**
+		- **Technical SEO, analytics, conversion-focused UX**
+		- **Stakeholder communication, workshop support, technical explanation**
 
 		---
 
 		## Professional Experience
 
-		### **Co-Founder & Senior Developer** | Karkia Pardazesh Firouzeh ([GorillaZone.shop](https://www.GorillaZone.shop))
-		*Oct 2017 – Dec 2024*
+		### Co-Founder - Systems & Technical Lead | Karkia Pardazesh Firouzeh
 
-		- **Ecosystem Development:** Engineered the complete online ecosystem using WordPress and WooCommerce, including custom plugins, proprietary payment gateways, and responsive design.
-		- **Growth Engineering:** Drove a **50% annual sales growth** by securing top Google rankings (#1-3) through technical SEO and high-conversion UX optimizations.
-		- **Infrastructure:** Designed organizational workflows for customer care, warehousing, and shipping to manage over **200+ monthly orders** efficiently.
+		*October 2017 - December 2024*
 
-		### **Senior Developer** | Green Wing Co. W.L.L (Salmiya)
-		*Jan 2020 – Apr 2023* 
+		I led software delivery, backend integrations, automation workflows, and technical systems for business operations. This included building and maintaining commerce infrastructure, improving operational workflows, and later designing AI assistant patterns using FastAPI, Qdrant, and retrieval-based workflows. Related portfolio work includes [Nil Home E-commerce Website](/projects/nil-home/) and the broader commerce/platform experience documented across my [projects](/projects/).
 
-		- **Multi-Platform Management:** Led the development of three WooCommerce platforms for major fashion brands, managing localized languages and stock for **50K+ monthly active users**.
-		- **Mobile Innovation:** Built a **Top 20-ranked shopping app** that increased sales by **48%** through seamless WooCommerce integration and optimized mobile UX flows.
-		- **Marketing Systems:** Advised on marketing systems for app acquisition, implementing analytics-driven campaign optimizations to lower CPA.
+		### Senior Systems Developer | Green Wing Co. W.L.L
 
-		### **WordPress Senior Developer** | Pasha Group
-		*Mar 2018 – Aug 2020*
+		*January 2020 - April 2023*
 
-		- **Specialized Platforms:** Developed one of the region's few real estate platforms featuring complete **360° virtual tours** ([MelkPasha.com](https://MelkPasha.com)).
-		- **Social-to-Web Conversion:** Transformed an Instagram-based shop into a fully integrated WooCommerce platform, resulting in a **23% annual sales increase** for Nil-Home.com.
+		I worked on production commerce platforms, integrations, mobile app delivery, and operational continuity for high-traffic fashion retail systems. The work is represented by [Anotah Multi-Region E-commerce Website](/projects/anotah-website/), [Anotah Mobile App](/projects/anotah-mobile-app/), and [Eleganza Concept Website](/projects/eleganza-concept/).
+
+		### WordPress Senior Developer | Pasha Group
+
+		*March 2018 - August 2020*
+
+		I developed real-estate and e-commerce websites, including [Pasha Group Websites](/projects/pasha-group-websites/) and [Nil Home E-commerce Website](/projects/nil-home/). This work included WordPress development, brand implementation, SEO-oriented content structures, and 360-degree virtual-tour experiences for real-estate listings.
 
 		---
 
 		## Education
 
 		### MSc in Artificial Intelligence and Robotics
-		*University of Hertfordshire, UK | Jan 2025 – Apr 2026* 
 
-		- **Program Overview:** This master's program focuses on the development of intelligent autonomous systems and advanced machine learning models.
-		- **Key Coursework:**
-			- **Artificial Intelligence:** Core principles of intelligent agent design.
-			- **Machine Learning:** Building and optimizing predictive models.
-			- **Artificial Life with Robotics:** Exploring biological behaviors in robotic systems.
-			- **Advanced AI & Neural Networks:** Specialized study of deep learning architectures.
+		*University of Hertfordshire, UK | 2025 - 2026*
 
+		- **Result:** Distinction, GPA 4.42/5.00.
+		- **Focus:** Artificial intelligence, machine learning, robotics, reinforcement learning, neural networks, and practical AI implementation.
+		- **Related work:** [Ned3 Pro DRL Sim-to-Real Reaching](/projects/ned3pro-mujoco-rl-bundle/), [Ned3 Pro Adaptive Controller](/projects/ned3pro-adaptive-controller/), [Robotic Navigation in Unity](/projects/robotic-navigation/), and [Agent Based Modelling](/projects/agent-based-disease-modelling-netlogo/).
 
-		- **Technical Research Areas:** - Implementing **Robot Operating System (ROS)** for perception and control.
-			- Training **Deep Reinforcement Learning (DRL)** models with complex reward functions.
-			- Developing **Agentic Workflows** for autonomous task execution.
+		### Bachelor of Science in Civil Engineering
 
-		### **Bachelor of Science in Civil Engineering**
-		*Azad University (IAU) | Sep 2010 – Dec 2014*
+		*Azad University (IAU) | September 2010 - December 2014*
 
-		- **Analytical Foundation:** Developed strong skills in mathematics, structural logic, and project management.
-		- **Project Management:** Experienced in risk assessment and managing complex construction workflows.
+		My civil engineering background gave me a strong foundation in mathematics, systems thinking, structural logic, and project management. Those habits still shape how I approach robotics, simulation, and AI system design.
+
+		---
+
+		## Workshops, Writing & Technical Communication
+
+		I enjoy explaining technical ideas clearly and helping people move from curiosity to working prototypes. I helped organize and support the [From Prompt to Agent Workshop at UH](/posts/from-prompt-to-agent-workshop/), a hands-on AI workshop focused on LLM APIs, prompt engineering, retrieval workflows, and applied prototyping.
+
+		I also write occasional notes about AI products, infrastructure, and public-interest technology, including [Inside HeyGen's Infinitely Me Pop-Up in London](/posts/heygen-pop-up-london/) and [Run Psiphon Conduit for Internet Freedom](/posts/help-bridge-the-internet-blackout-in-iran/).
 
 		---
 
 		## Certifications
 
-		- **NVIDIA** - [Applications of AI for Predictive Maintenance](https://learn.nvidia.com/certificates?id=YWZun4wdSw2ygod4jb6K8A): 
-		
-			Building predictive failure models, analyzing industrial time-series data, and implementing AI for preventive maintenance.
-		- **NVIDIA** - [Building Transformer-Based Natural Language Processing Applications](https://learn.nvidia.com/certificates?id=3nrbVP3ORY-C8vcIypQzqQ): 
-		
-			Fine-tuning Transformer architectures, implementing attention mechanisms, and developing specialized text classification models.
-		- **NVIDIA** - [Computer Vision for Industrial Inspection](https://learn.nvidia.com/certificates?id=c2vVDi1OQnaGes8ZQDO8Bg#): 
-		
-			Designing object detection pipelines, implementing image segmentation, and deploying CV for robotic control.
-		- **Google** - [5-Day AI Agents Intensive Course](https://www.kaggle.com/certification/badges/danialzaf/105) (via Kaggle/Google Cloud)
-			
-			Designing autonomous agentic workflows, developing multi-agent systems, and implementing LLM-based task automation.
-		- **NVIDIA** - [Fundamentals of Deep Learning](https://learn.nvidia.com/certificates?id=CxXKAFzCR9qGnQHtpvGytg#): 
-		
-			Training deep neural networks, applying transfer learning, and optimizing model hyperparameters.
-		- **Microsoft** - [Azure AI Fundamentals (AI-900)](https://www.credly.com/badges/8c587c2e-c0ce-4673-aed4-b7a9d9cb301f/linked_in_profile): 
-		
-			Implementing cloud-based cognitive services, managing machine learning lifecycles, and applying ethical AI frameworks.
-		- **HarvardX** - **CS50's Introduction to Programming with Python** (CS50P): 
-		
-			Mastering Pythonic logic, architecting object-oriented solutions, and implementing automated unit testing.
-		- **Google** - **Fundamentals of Digital Marketing**: 
-		
-			Executing technical SEO strategies, analyzing marketing data, and optimizing user acquisition funnels.
+		- **Microsoft:** [Azure AI Fundamentals (AI-900)](https://www.credly.com/badges/8c587c2e-c0ce-4673-aed4-b7a9d9cb301f/linked_in_profile)
+		- **NVIDIA Deep Learning Institute:** [Fundamentals of Deep Learning](https://learn.nvidia.com/certificates?id=CxXKAFzCR9qGnQHtpvGytg#)
+		- **NVIDIA Deep Learning Institute:** [Building Transformer-Based Natural Language Processing Applications](https://learn.nvidia.com/certificates?id=3nrbVP3ORY-C8vcIypQzqQ)
+		- **NVIDIA Deep Learning Institute:** [Computer Vision for Industrial Inspection](https://learn.nvidia.com/certificates?id=c2vVDi1OQnaGes8ZQDO8Bg#)
+		- **Google:** [5-Day AI Agents Intensive Course](https://www.kaggle.com/certification/badges/danialzaf/105)
+		- **HarvardX:** CS50P - Introduction to Programming with Python
 
 		---
 
-		## Additional Skills
+		## Publications & Research Direction
 
-		- **AI & Autonomous Systems:** Agentic Workflows, Multi-agent systems, and LLM-based task automation.
-		- **Robotics & Simulation:** Robot Operating System (ROS1/ROS2), Gazebo simulation environment, and Computer Vision for Industrial Inspection.
-		- **Cross-Platform Programming Language:** Flutter, Dart.
-		- **Mobile Application:** iOS & Android App Developer; Releasing and Version Control of apps in both popular app stores.
-		- **Front-End Web Design Expert:** HTML, CSS, JavaScript, PHP, Bootstrap.
-		- **Back-End Programming Language:** Python, PHP, Dart, Git, Algorithms.
-		- **Deep Learning:** Transformer architectures, Predictive Maintenance models, and Neural Networks.
-		- **Content Management System:** Expert in WordPress Theme and Plugin Coding and Customization.
-		- **Adobe Creative Applications:** Photoshop, Adobe Premiere Pro, After Effects.
-		- **Marketing & Social Media:** Social Media Expert, Google Ads, Facebook Business, Google Analytics, SEO Executive.
-		- **Computer Hardware:** Assembling, support, and hardware maintenance.
+		- **Under submission:** Reinforcement Learning-Based Constrained Control of Euler-Lagrange Systems Using Progressive Barrier Lyapunov Functions.
+		- **Under submission:** Hardware-Aware Real-Motor Validation of a Nussbaum-Function PID Controller for a Low-Cost Manipulator Joint Using Optuna-Guided Tuning.
+
+		My research direction connects adaptive control, reinforcement learning, explainable experimentation, and real-hardware validation. The practical side of that work is reflected in the [Ned3 Pro Adaptive Controller](/projects/ned3pro-adaptive-controller/) and [Ned3 Pro DRL Sim-to-Real Reaching](/projects/ned3pro-mujoco-rl-bundle/) projects.
 
 		---
-	
+
 		## Languages
-		- **English:** Pre-Advanced (Working on accent improvement).
+
+		- **English:** Professional working proficiency.
 		- **Farsi (Persian):** Native.
 		- **Azerbaijani:** Native.
 		- **Turkish:** Fluent.
 
 		---
 
-        Check out my [GitHub](https://github.com/danialza) to see what I'm working on!
-    </div>
+		You can explore my full [project archive](/projects/), read my [posts](/posts/), or visit my [GitHub](https://github.com/danialza) for code and experiments.
+	</div>
 </PageLayout>
