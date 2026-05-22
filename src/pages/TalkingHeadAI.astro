@@ -3,8 +3,8 @@ import PageLayout from "@/layouts/Base.astro";
 import ReadmeContent from "@/content/private-pages/talkingheadai-readme.md";
 
 const repositoryUrl = "https://github.com/danialza/TalkingHeadAI";
-const videoPoster = "/videos/talking-head-ai/talkingheadai-overview-poster.jpg";
-const videoSrc = "/videos/talking-head-ai/talkingheadai-overview.mp4";
+const videoPoster = "/videos/talking-head-ai/talking-head-ai-poster.jpg";
+const videoSrc = "/videos/talking-head-ai/talking-head-ai-demo.mp4";
 const folderStructureEntries = [
 	{ name: "ai-services", type: "folder" },
 	{ name: "assets/diagrams", type: "folder" },
@@ -54,7 +54,7 @@ const folderStructureEntries = [
 				controls
 				playsinline
 				poster={videoPoster}
-				preload="metadata"
+				preload="none"
 			>
 				<source src={videoSrc} type="video/mp4" />
 				Your browser does not support the video tag.
