@@ -3,7 +3,7 @@ title: "Article: Hardware-Aware Nussbaum-PID Controller"
 description: "Companion page for a real-hardware Nussbaum-PID study on the Niryo NED3 Pro, including headline metrics, diagrams, figures, and reproducibility links."
 publishDate: "2026-05-27"
 coverImage:
-  src: "./img/hardware-aware-nussbaum-pid-cover.png"
+  src: "./img/hardware-aware-nussbaum-pid-cover.webp"
   alt: "Hardware-aware Nussbaum-PID controller cover with robot joint, control diagram, and tracking plots"
 tags: ["robotics", "python"]
 ---
@@ -42,37 +42,37 @@ The direct baseline implementation degrades to **MAE = 10.476 degree** on the sa
 
 ## Visual Summary
 
-![Graphical abstract: real-hardware Nussbaum-PID control and optimization framework](https://raw.githubusercontent.com/danialza/hardware-aware-nussbaum-pid/main/figures/fig_graphical_abstract.png)
+![Graphical abstract: real-hardware Nussbaum-PID control and optimization framework](./img/hardware-aware-nussbaum-pid-graphical-abstract.webp)
 
 *Graphical abstract: the article connects Nussbaum-PID theory, the NED3 Pro / Dynamixel actuator, the hardware-aware layer, Optuna-guided tuning, and long-horizon validation.*
 
-![Hardware platform: Niryo NED3 Pro experimental setup](https://raw.githubusercontent.com/danialza/hardware-aware-nussbaum-pid/main/figures/fig_hardware_platform.png)
+![Hardware platform: Niryo NED3 Pro experimental setup](./img/hardware-aware-nussbaum-pid-hardware-platform.webp)
 
 *Hardware platform used for the single-joint current-mode validation on the Niryo NED3 Pro.*
 
-![Headline 10 degree / 0.05 Hz, 300 s validation](https://raw.githubusercontent.com/danialza/hardware-aware-nussbaum-pid/main/figures/fig_envelope_amp10_005hz.png)
+![Headline 10 degree / 0.05 Hz, 300 s validation](./img/hardware-aware-nussbaum-pid-headline-10deg-005hz.webp)
 
 *Headline 300 s validation run at 10 degree / 0.05 Hz.*
 
-![Hardware-aware Nussbaum-PID block diagram](https://raw.githubusercontent.com/danialza/hardware-aware-nussbaum-pid/main/figures/fig_block_diagram.png)
+![Hardware-aware Nussbaum-PID block diagram](./img/hardware-aware-nussbaum-pid-block-diagram.webp)
 
 *Hardware-aware Nussbaum-PID control architecture for the NED3 Pro actuator.*
 
 ## Key Figures
 
-![Baseline versus enhanced Nussbaum-PID comparison](https://raw.githubusercontent.com/danialza/hardware-aware-nussbaum-pid/main/figures/fig_pure_vs_paperplus.png)
+![Baseline versus enhanced Nussbaum-PID comparison](./img/hardware-aware-nussbaum-pid-baseline-vs-enhanced.webp)
 
 *Baseline versus enhanced controller comparison.*
 
-![Critical zoom around zeta approximately pi over 2 failure region](https://raw.githubusercontent.com/danialza/hardware-aware-nussbaum-pid/main/figures/fig_critical_region_zoom.png)
+![Critical zoom around zeta approximately pi over 2 failure region](./img/hardware-aware-nussbaum-pid-critical-zoom.webp)
 
 *Critical-region zoom showing the failure mode around zeta approximately pi over 2.*
 
-![Multi-envelope 40 degree step response summary](https://raw.githubusercontent.com/danialza/hardware-aware-nussbaum-pid/main/figures/fig_envelope_step40.png)
+![Multi-envelope 40 degree step response summary](./img/hardware-aware-nussbaum-pid-step40.webp)
 
 *Multi-envelope step-response evidence for the 40 degree condition.*
 
-![Optuna search dashboard](https://raw.githubusercontent.com/danialza/hardware-aware-nussbaum-pid/main/figures/fig_optuna_progress.png)
+![Optuna search dashboard](./img/hardware-aware-nussbaum-pid-optuna-progress.webp)
 
 *Optuna search dashboard used to summarize tuning progress.*
 
