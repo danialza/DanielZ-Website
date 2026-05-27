@@ -2,6 +2,9 @@
 title: "Hardware-Aware Nussbaum-PID Controller"
 description: "Companion project page for the hardware-aware experimental assessment of a Nussbaum-function PID controller on a Niryo NED3 Pro joint."
 publishDate: "2026-05-27"
+coverImage:
+  src: "./img/hardware-aware-nussbaum-pid-cover.png"
+  alt: "Hardware-aware Nussbaum-PID controller cover with robot joint, control diagram, and tracking plots"
 tags: ["robotics", "control-systems", "pid", "python"]
 ---
 
