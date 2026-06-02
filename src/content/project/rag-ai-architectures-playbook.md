@@ -1,12 +1,88 @@
 ---
-title: "RAG AI Architectures: What I Use and Why"
-publishDate: "2 June 2026"
-description: "A practical overview of RAG AI architectures, from Naive RAG to Agentic and Secure Enterprise RAG, with my personal view on where each one fits."
-tags: ["ai", "rag", "llm"]
+title: "RAG Architectures Playbook"
+publishDate: "2026-06-02"
+description: "A practical RAG architectures playbook with 24 patterns, one shared example, pseudo-code, result comparison, and my preferred production starting point."
+tags: ["ai", "python", "rag", "llm"]
 coverImage:
   alt: "RAG AI architectures cover illustration"
-  src: "./rag-ai-architectures-cover.png"
+  src: "./img/rag-ai-architectures/rag-ai-architectures-cover.png"
 ---
+
+## Role
+
+AI Systems Research and Technical Writing
+
+## Project Summary
+
+This project is a practical playbook for comparing **24 RAG architectures** using one shared example. I built it because RAG discussions often become too abstract: people explain the pattern, but they do not show when one design is actually better than another.
+
+The playbook keeps the comparison simple:
+- one shared university chatbot example
+- one-line pseudo-code for each RAG style
+- short expected result for each architecture
+- a result comparison table
+- a recommended practical stack
+
+## Repository
+
+[RAG Architectures Playbook](https://github.com/danialza/RAG-Architectures-Playbook)
+
+## Shared Example
+
+The same question is used across the whole project:
+
+```text
+Which RAG architecture should I use for a university chatbot that answers from course documents, policies, and live announcements?
+```
+
+Using one example makes the differences easier to see. Instead of only saying "this architecture is better", the project shows what each one would likely do with the same problem.
+
+## Result Comparison
+
+These are not benchmark numbers. They are practical expected-fit scores for the shared university chatbot example, based on what each architecture is designed to do.
+
+| Architecture | Fit | Expected Result |
+|---|---:|---|
+| Agentic RAG | `█████████░` 9/10 | Best when the chatbot must plan steps and check tools. |
+| Tool-Augmented RAG | `█████████░` 9/10 | Strong when APIs are available for timetables or live data. |
+| Secure Enterprise RAG | `█████████░` 9/10 | Needed for private university data and permissions. |
+| Reranking RAG | `████████░░` 8/10 | Improves evidence quality before the answer. |
+| Hybrid RAG | `████████░░` 8/10 | Strong balance of semantic and exact matching. |
+| Real-Time RAG | `████████░░` 8/10 | Best for live announcements and changes. |
+| Adaptive RAG | `████████░░` 8/10 | Chooses the right strategy for each question. |
+| Personalised RAG | `████████░░` 8/10 | Useful for different students, courses, and permissions. |
+| Query-Transform RAG | `███████░░░` 7/10 | Makes messy student questions easier to retrieve from. |
+| RAG-Fusion | `███████░░░` 7/10 | Better combined retrieval for broad questions. |
+| Multi-Hop RAG | `███████░░░` 7/10 | Good for answers that need several lookups. |
+| GraphRAG | `███████░░░` 7/10 | Useful for relationships between courses and policies. |
+| Knowledge Graph RAG | `███████░░░` 7/10 | Strong for structured official facts. |
+| Modular RAG | `███████░░░` 7/10 | Good for systems that will grow over time. |
+| SQL RAG | `███████░░░` 7/10 | Strong for structured tables and records. |
+| Advanced RAG | `██████░░░░` 6/10 | Better than Naive RAG with filters and metadata. |
+| Multimodal RAG | `██████░░░░` 6/10 | Useful when documents include images, tables, or slides. |
+| Self-RAG | `██████░░░░` 6/10 | Helps the model decide when evidence is needed. |
+| Corrective RAG | `██████░░░░` 6/10 | Useful when retrieval quality is unreliable. |
+| Multi-Query RAG | `██████░░░░` 6/10 | Searches from several angles, but can add noise. |
+| Long-Context RAG | `█████░░░░░` 5/10 | Useful for large context, but can be noisy and costly. |
+| HyDE RAG | `█████░░░░░` 5/10 | Helps vague questions, but less direct for exact policies. |
+| Naive RAG | `███░░░░░░░` 3/10 | Fine for simple Q&A, weak for this full use case. |
+
+## My Recommended Stack
+
+For this example, I would not use only one RAG architecture. My practical starting stack would be:
+
+```text
+Hybrid RAG + Query Transform + Reranking + Real-Time RAG + Secure Enterprise RAG
+```
+
+In simple terms:
+- **Hybrid RAG** gives both semantic and exact matching.
+- **Query Transform** makes messy student questions easier to search.
+- **Reranking** improves the final evidence.
+- **Real-Time RAG** handles live announcements.
+- **Secure Enterprise RAG** protects private data and permissions.
+
+If the chatbot needs to call real systems like timetable APIs or student-record APIs, I would then add **Tool-Augmented RAG**. If it needs multi-step planning, I would add **Agentic RAG**, but I would not start there unless the product really needs it.
 
 Retrieval-Augmented Generation, or **RAG**, is one of the most useful ideas in modern AI engineering. The simple version is easy to explain: instead of asking an LLM to answer only from memory, we first retrieve relevant information, then ask the model to answer using that evidence.
 
@@ -14,7 +90,7 @@ My personal view is that **RAG is better than using an LLM alone whenever the an
 
 For me, the best default is usually not Naive RAG. I prefer starting with **Hybrid RAG + Query Transform + Reranking**. That combination gives a practical balance: semantic understanding, exact keyword matching, better search phrasing, and cleaner final context. I use Agentic RAG only when the task really needs planning, tools, or multiple steps, because it is powerful but harder to control.
 
-I also created a small companion GitHub playbook with one shared example, short pseudo-code, and a simple result for each architecture: [RAG Architectures Playbook](https://github.com/danialza/RAG-Architectures-Playbook).
+The full GitHub playbook includes the same shared example, pseudo-code, and result comparison in a compact reference format.
 
 ## Where I use each style
 
@@ -32,7 +108,7 @@ In my own projects, I think about RAG like this:
 
 Naive RAG is the basic version. Documents are split into chunks, converted into embeddings, stored in a vector database, and retrieved when a user asks a question.
 
-![Naive RAG flowchart](./01_naive_rag.png)
+![Naive RAG flowchart](./img/rag-ai-architectures/01_naive_rag.png)
 
 Best for simple document Q&A, small knowledge bases, FAQ bots, and basic search assistants.
 
@@ -42,7 +118,7 @@ The weakness is that it can retrieve irrelevant chunks or miss important context
 
 Advanced RAG improves the basic pipeline with better chunking, metadata, query rewriting, filtering, reranking, and post-processing.
 
-![Advanced RAG flowchart](./02_advanced_rag.png)
+![Advanced RAG flowchart](./img/rag-ai-architectures/02_advanced_rag.png)
 
 Best for professional chatbots, research assistants, technical documentation search, and enterprise knowledge systems.
 
@@ -52,7 +128,7 @@ This is often the first version I would consider for a serious product, because 
 
 Modular RAG breaks the system into replaceable components. You can change the retriever, reranker, database, router, or generator independently.
 
-![Modular RAG flowchart](./03_modular_rag.png)
+![Modular RAG flowchart](./img/rag-ai-architectures/03_modular_rag.png)
 
 Best for larger AI products that combine documents, APIs, databases, web search, and different retrieval tools.
 
@@ -62,7 +138,7 @@ The trade-off is engineering complexity. Every module needs testing, monitoring,
 
 Hybrid RAG combines semantic vector search with keyword search. Vector search understands meaning. Keyword search is better for exact names, IDs, dates, technical terms, and product codes.
 
-![Hybrid RAG flowchart](./04_hybrid_rag.png)
+![Hybrid RAG flowchart](./img/rag-ai-architectures/04_hybrid_rag.png)
 
 This is one of my favorite practical RAG patterns. For CV matching, technical manuals, legal documents, and product data, I do not want to rely only on semantic similarity. Exact matching still matters.
 
@@ -70,7 +146,7 @@ This is one of my favorite practical RAG patterns. For CV matching, technical ma
 
 Query-Transform RAG rewrites the user's question before retrieval. This helps when the question is vague, too short, badly phrased, or missing useful search terms.
 
-![Query-Transform RAG flowchart](./05_query_transform_rag.png)
+![Query-Transform RAG flowchart](./img/rag-ai-architectures/05_query_transform_rag.png)
 
 Example:
 
@@ -84,7 +160,7 @@ I like this pattern for user-facing systems because users naturally ask casual q
 
 Multi-Query RAG generates several alternative versions of the same question and searches with all of them.
 
-![Multi-Query RAG flowchart](./06_multi_query_rag.png)
+![Multi-Query RAG flowchart](./img/rag-ai-architectures/06_multi_query_rag.png)
 
 Best for research, academic search, and complex topics where the same idea can be worded in different ways.
 
@@ -94,7 +170,7 @@ The cost is higher because the system performs multiple searches.
 
 RAG-Fusion is close to Multi-Query RAG, but it also ranks and fuses results from multiple generated queries.
 
-![RAG-Fusion flowchart](./07_rag_fusion.png)
+![RAG-Fusion flowchart](./img/rag-ai-architectures/07_rag_fusion.png)
 
 Best for deep research, comparison posts, literature reviews, and long-form answers.
 
@@ -104,7 +180,7 @@ From my point of view, this is better than plain Multi-Query RAG when the answer
 
 HyDE means Hypothetical Document Embeddings. The model first generates a hypothetical answer or document, then embeds that generated text for retrieval.
 
-![HyDE RAG flowchart](./08_hyde_rag.png)
+![HyDE RAG flowchart](./img/rag-ai-architectures/08_hyde_rag.png)
 
 Best for short or abstract questions.
 
@@ -114,7 +190,7 @@ The risk is that the hypothetical answer can point retrieval in the wrong direct
 
 Reranking RAG first retrieves many candidate chunks, then uses a stronger model to reorder them and keep only the most relevant ones.
 
-![Reranking RAG flowchart](./09_reranking_rag.png)
+![Reranking RAG flowchart](./img/rag-ai-architectures/09_reranking_rag.png)
 
 This is another pattern I use often. The first retrieval step is rarely perfect, so reranking is a very practical way to improve answer quality.
 
@@ -124,7 +200,7 @@ The trade-off is extra latency and cost.
 
 Self-RAG lets the model check whether it needs retrieval, whether the retrieved context is useful, and whether the final answer is supported by evidence.
 
-![Self-RAG flowchart](./10_self_rag.png)
+![Self-RAG flowchart](./img/rag-ai-architectures/10_self_rag.png)
 
 Best for factual systems where grounding matters.
 
@@ -134,7 +210,7 @@ It can be slower, but the extra checking is useful when hallucination is expensi
 
 Corrective RAG, or CRAG, checks whether retrieved documents are good enough. If the context is weak, the system can search again, refine the documents, or use web search.
 
-![Corrective RAG flowchart](./11_corrective_rag.png)
+![Corrective RAG flowchart](./img/rag-ai-architectures/11_corrective_rag.png)
 
 Best for open-domain Q&A, research assistants, and systems where retrieval quality can vary.
 
@@ -144,7 +220,7 @@ The hard part is building a reliable evaluator.
 
 Adaptive RAG chooses the retrieval strategy depending on the question. Easy questions may need no retrieval. Factual questions may need basic retrieval. Complex questions may need multi-step retrieval or tools.
 
-![Adaptive RAG flowchart](./12_adaptive_rag.png)
+![Adaptive RAG flowchart](./img/rag-ai-architectures/12_adaptive_rag.png)
 
 Best for production assistants that handle many different types of user questions.
 
@@ -154,7 +230,7 @@ The router or classifier must be accurate, otherwise the system chooses the wron
 
 Agentic RAG uses an AI agent to plan, search, use tools, evaluate results, and repeat steps until it has enough information.
 
-![Agentic RAG flowchart](./13_agentic_rag.png)
+![Agentic RAG flowchart](./img/rag-ai-architectures/13_agentic_rag.png)
 
 This is powerful for complex research, business intelligence, coding agents, legal assistants, and multi-step workflows.
 
@@ -164,7 +240,7 @@ My opinion: Agentic RAG is not always better. It is better when the task needs p
 
 GraphRAG uses graph structures, such as entities, relationships, communities, and links between concepts. Instead of retrieving isolated chunks, it retrieves connected information.
 
-![GraphRAG flowchart](./14_graphrag.png)
+![GraphRAG flowchart](./img/rag-ai-architectures/14_graphrag.png)
 
 Best for complex domains with many relationships, such as research papers, legal cases, company knowledge, medical knowledge, finance, and history.
 
@@ -178,7 +254,7 @@ Drug -> treats -> Disease
 
 Paper -> cites -> Paper
 
-![Knowledge Graph RAG flowchart](./15_knowledge_graph_rag.png)
+![Knowledge Graph RAG flowchart](./img/rag-ai-architectures/15_knowledge_graph_rag.png)
 
 Best for medical, scientific, legal, and enterprise systems where relationships matter.
 
@@ -186,7 +262,7 @@ Best for medical, scientific, legal, and enterprise systems where relationships 
 
 Multi-Hop RAG retrieves information in several steps. The answer cannot be found in one document, so the system connects facts across multiple sources.
 
-![Multi-Hop RAG flowchart](./16_multi_hop_rag.png)
+![Multi-Hop RAG flowchart](./img/rag-ai-architectures/16_multi_hop_rag.png)
 
 Best for investigation tasks, research questions, comparison articles, and reasoning-heavy Q&A.
 
@@ -196,7 +272,7 @@ The risk is that errors can accumulate across retrieval steps.
 
 Hierarchical RAG, sometimes connected with RAPTOR-style approaches, organizes documents into a tree of summaries. The system can search high-level summaries first, then drill down into details.
 
-![Hierarchical RAG flowchart](./17_hierarchical_rag.png)
+![Hierarchical RAG flowchart](./img/rag-ai-architectures/17_hierarchical_rag.png)
 
 Best for large documents, books, long reports, research libraries, and big knowledge bases.
 
@@ -204,7 +280,7 @@ Best for large documents, books, long reports, research libraries, and big knowl
 
 Long-Context RAG retrieves larger sections or entire documents and sends them to a model with a large context window.
 
-![Long-Context RAG flowchart](./18_long_context_rag.png)
+![Long-Context RAG flowchart](./img/rag-ai-architectures/18_long_context_rag.png)
 
 Best for long contracts, academic papers, technical manuals, and reports.
 
@@ -214,7 +290,7 @@ I see this as useful, but not a replacement for good retrieval. More context doe
 
 Multimodal RAG retrieves and uses different data types: text, images, tables, charts, audio, video, and PDFs.
 
-![Multimodal RAG flowchart](./19_multimodal_rag.png)
+![Multimodal RAG flowchart](./img/rag-ai-architectures/19_multimodal_rag.png)
 
 This is one of the most exciting areas for me because it connects strongly with robotics, visual understanding, education, product search, and document AI.
 
@@ -222,7 +298,7 @@ This is one of the most exciting areas for me because it connects strongly with 
 
 Structured Data RAG retrieves information from SQL tables, spreadsheets, CRMs, dashboards, and business databases.
 
-![SQL RAG flowchart](./20_sql_rag.png)
+![SQL RAG flowchart](./img/rag-ai-architectures/20_sql_rag.png)
 
 Best for business analytics, dashboards, sales reports, finance, HR systems, and inventory search.
 
@@ -232,7 +308,7 @@ The generated SQL must be correct and safe.
 
 Tool-Augmented RAG retrieves information from documents and also uses tools, APIs, calculators, search engines, calendars, CRMs, or software systems.
 
-![Tool-Augmented RAG flowchart](./21_tool_augmented_rag.png)
+![Tool-Augmented RAG flowchart](./img/rag-ai-architectures/21_tool_augmented_rag.png)
 
 Best for AI agents, workflow automation, booking systems, coding assistants, and business operations.
 
@@ -242,7 +318,7 @@ This is where RAG starts to move from "answering" toward "doing".
 
 Real-Time RAG retrieves live or frequently updated information, such as news, prices, stock data, weather, sports, or current company data.
 
-![Real-Time RAG flowchart](./22_real_time_rag.png)
+![Real-Time RAG flowchart](./img/rag-ai-architectures/22_real_time_rag.png)
 
 Best for news assistants, finance tools, travel planning, live dashboards, and market research.
 
@@ -252,7 +328,7 @@ The challenge is that fresh information can be noisy or conflicting.
 
 Personalised RAG retrieves information specific to one user, such as notes, preferences, uploaded files, calendar, emails, CV, projects, or learning history.
 
-![Personalised RAG flowchart](./23_personalised_rag.png)
+![Personalised RAG flowchart](./img/rag-ai-architectures/23_personalised_rag.png)
 
 Best for personal assistants, learning tutors, CV tailoring systems, productivity tools, and private research assistants.
 
@@ -262,7 +338,7 @@ This is useful, but privacy and permission control matter a lot.
 
 Secure RAG focuses on permission control, privacy, compliance, audit logs, access filtering, and data leakage prevention.
 
-![Secure Enterprise RAG flowchart](./24_secure_enterprise_rag.png)
+![Secure Enterprise RAG flowchart](./img/rag-ai-architectures/24_secure_enterprise_rag.png)
 
 Best for healthcare, finance, legal, education, government, and enterprise AI systems.
 
