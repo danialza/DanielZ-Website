@@ -83,6 +83,8 @@ For this example, I would not use only one RAG architecture. My practical starti
 Hybrid RAG + Query Transform + Reranking + Real-Time RAG + Secure Enterprise RAG
 ```
 
+![Recommended practical RAG stack workflow](./img/rag-ai-architectures/rag-winner-stack-workflow.png)
+
 In simple terms:
 - **Hybrid RAG** gives both semantic and exact matching.
 - **Query Transform** makes messy student questions easier to search.
