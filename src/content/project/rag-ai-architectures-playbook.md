@@ -4,8 +4,8 @@ publishDate: "2026-06-02"
 description: "A practical RAG architectures playbook with 24 patterns, one shared example, pseudo-code, result comparison, and my preferred production starting point."
 tags: ["ai", "python", "rag", "llm"]
 coverImage:
-  alt: "RAG AI architectures cover illustration"
-  src: "./img/rag-ai-architectures/rag-ai-architectures-cover.png"
+  alt: "RAG architectures result map showing recommended stack and expected fit scores"
+  src: "./img/rag-ai-architectures/rag-result-map-linkedin.png"
 ---
 
 ## Role
@@ -38,6 +38,8 @@ Which RAG architecture should I use for a university chatbot that answers from c
 Using one example makes the differences easier to see. Instead of only saying "this architecture is better", the project shows what each one would likely do with the same problem.
 
 ## Result Comparison
+
+![RAG architectures result map](./img/rag-ai-architectures/rag-result-map-linkedin.png)
 
 These are not benchmark numbers. They are practical expected-fit scores for the shared university chatbot example, based on what each architecture is designed to do.
 
