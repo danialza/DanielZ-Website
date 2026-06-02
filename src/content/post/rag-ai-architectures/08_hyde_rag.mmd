@@ -1,0 +1,14 @@
+flowchart LR
+    A["User Question"]
+    B["Generate Hypothetical Answer"]
+    C["Embed Hypothetical Answer"]
+    D["Vector Search"]
+    E["Retrieve Real Documents"]
+    F["LLM Uses Real Evidence"]
+    G["Final Answer"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G

@@ -1,0 +1,12 @@
+flowchart LR
+    A["User Question"]
+    B["Retrieve Top 50 Chunks"]
+    C["Cross-Encoder / Reranker"]
+    D["Keep Best 5 Chunks"]
+    E["LLM"]
+    F["Answer"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F

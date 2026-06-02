@@ -1,0 +1,18 @@
+flowchart TD
+    A["Raw Documents"]
+    B["Small Chunks"]
+    C["Cluster Similar Chunks"]
+    D["Generate Summaries"]
+    E["Higher-Level Summary Tree"]
+    F["User Question"]
+    G["Search Summary Tree"]
+    H["Drill Down to Detailed Chunks"]
+    I["LLM Answer"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    F --> G
+    E --> G
+    G --> H
+    H --> I

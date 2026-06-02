@@ -1,0 +1,15 @@
+flowchart LR
+    A["User Question"]
+    B1["Vector Search"]
+    B2["Keyword Search / BM25"]
+    C["Merge Results"]
+    D["Rerank Results"]
+    E["LLM"]
+    F["Answer"]
+    A --> B1
+    A --> B2
+    B1 --> C
+    B2 --> C
+    C --> D
+    D --> E
+    E --> F

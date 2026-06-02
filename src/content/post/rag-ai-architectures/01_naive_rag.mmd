@@ -1,0 +1,12 @@
+flowchart LR
+    A["User Question"]
+    B["Embed Question"]
+    C["Vector Database Search"]
+    D["Retrieve Top-K Chunks"]
+    E["Context + Question to LLM"]
+    F["Final Answer"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F

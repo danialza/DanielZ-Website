@@ -1,0 +1,20 @@
+flowchart TD
+    A["User Question"]
+    B["Router"]
+    C1["Vector Retriever"]
+    C2["Keyword Retriever"]
+    C3["API Tool"]
+    D["Context Merger"]
+    E["Reranker"]
+    F["LLM"]
+    G["Answer"]
+    A --> B
+    B --> C1
+    B --> C2
+    B --> C3
+    C1 --> D
+    C2 --> D
+    C3 --> D
+    D --> E
+    E --> F
+    F --> G

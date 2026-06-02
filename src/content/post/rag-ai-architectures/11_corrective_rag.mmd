@@ -1,0 +1,19 @@
+flowchart TD
+    A["User Question"]
+    B["Initial Retrieval"]
+    C["Retrieval Evaluator"]
+    D{"Good Context?"}
+    E["Generate Answer"]
+    F["Correct Retrieval"]
+    G["Web Search / Better Search"]
+    H["Improved Context"]
+    I["Final Answer"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    D --> F
+    F --> G
+    G --> H
+    H --> E
+    E --> I

@@ -1,0 +1,16 @@
+flowchart TD
+    A["User Question"]
+    B["Authenticate User"]
+    C["Check Permissions"]
+    D["Retrieve Only Allowed Data"]
+    E["Redact Sensitive Information"]
+    F["LLM"]
+    G["Policy Check"]
+    H["Safe Answer"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H

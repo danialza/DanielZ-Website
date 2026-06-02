@@ -1,0 +1,20 @@
+flowchart TD
+    A["User Question"]
+    B{"Need Retrieval?"}
+    C["Answer Directly"]
+    D["Retrieve Evidence"]
+    E{"Is Evidence Useful?"}
+    F["Retrieve Again"]
+    G["Generate Answer"]
+    H{"Is Answer Supported?"}
+    I["Final Answer"]
+    A --> B
+    B --> C
+    B --> D
+    D --> E
+    E --> F
+    F --> D
+    E --> G
+    G --> H
+    H --> D
+    H --> I

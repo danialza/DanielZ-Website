@@ -1,0 +1,20 @@
+flowchart TD
+    A["User Question"]
+    B["Generate Related Queries"]
+    C1["Search Query A"]
+    C2["Search Query B"]
+    C3["Search Query C"]
+    D["Reciprocal Rank Fusion"]
+    E["Top Combined Evidence"]
+    F["LLM"]
+    G["Final Answer"]
+    A --> B
+    B --> C1
+    B --> C2
+    B --> C3
+    C1 --> D
+    C2 --> D
+    C3 --> D
+    D --> E
+    E --> F
+    F --> G

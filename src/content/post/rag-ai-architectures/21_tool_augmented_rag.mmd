@@ -1,0 +1,21 @@
+flowchart TD
+    A["User Request"]
+    B["Tool Router"]
+    C1["Document Retriever"]
+    C2["API Call"]
+    C3["Calculator"]
+    C4["Database"]
+    D["Combine Tool Results"]
+    E["LLM"]
+    F["Answer / Action"]
+    A --> B
+    B --> C1
+    B --> C2
+    B --> C3
+    B --> C4
+    C1 --> D
+    C2 --> D
+    C3 --> D
+    C4 --> D
+    D --> E
+    E --> F

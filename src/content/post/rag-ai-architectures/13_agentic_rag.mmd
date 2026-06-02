@@ -1,0 +1,17 @@
+flowchart TD
+    A["User Goal"]
+    B["Agent Creates Plan"]
+    C["Choose Tool or Retriever"]
+    D["Retrieve / Search / Query API"]
+    E["Evaluate Evidence"]
+    F{"Enough Information?"}
+    G["Synthesize Answer"]
+    H["Final Response"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> B
+    F --> G
+    G --> H

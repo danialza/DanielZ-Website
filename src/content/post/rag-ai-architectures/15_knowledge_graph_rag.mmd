@@ -1,0 +1,14 @@
+flowchart LR
+    A["User Question"]
+    B["Entity Recognition"]
+    C["Knowledge Graph Query"]
+    D["Retrieve Triples / Paths"]
+    E["Convert Graph Facts to Context"]
+    F["LLM"]
+    G["Answer"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G

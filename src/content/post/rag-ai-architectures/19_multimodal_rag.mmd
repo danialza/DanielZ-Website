@@ -1,0 +1,21 @@
+flowchart TD
+    A["User Question"]
+    B["Multimodal Retriever"]
+    C1["Text Chunks"]
+    C2["Images"]
+    C3["Tables"]
+    C4["Audio / Video Segments"]
+    D["Multimodal Context Builder"]
+    E["Multimodal LLM"]
+    F["Answer"]
+    A --> B
+    B --> C1
+    B --> C2
+    B --> C3
+    B --> C4
+    C1 --> D
+    C2 --> D
+    C3 --> D
+    C4 --> D
+    D --> E
+    E --> F

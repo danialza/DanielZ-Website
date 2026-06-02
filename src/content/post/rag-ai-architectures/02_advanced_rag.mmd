@@ -1,0 +1,16 @@
+flowchart LR
+    A["User Question"]
+    B["Query Rewriting"]
+    C["Hybrid / Vector Retrieval"]
+    D["Metadata Filtering"]
+    E["Reranker"]
+    F["Best Context Selection"]
+    G["LLM Generation"]
+    H["Grounded Answer"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H

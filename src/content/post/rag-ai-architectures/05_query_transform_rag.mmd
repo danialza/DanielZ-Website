@@ -1,0 +1,12 @@
+flowchart LR
+    A["Original Question"]
+    B["LLM Rewrites Query"]
+    C["Improved Search Query"]
+    D["Retriever"]
+    E["Relevant Chunks"]
+    F["LLM Answer"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F

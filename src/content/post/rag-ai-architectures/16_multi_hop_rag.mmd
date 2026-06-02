@@ -1,0 +1,17 @@
+flowchart TD
+    A["Complex Question"]
+    B["Retrieve First Evidence"]
+    C["Extract Intermediate Clue"]
+    D["Second Retrieval"]
+    E["Extract More Evidence"]
+    F{"Need More Hops?"}
+    G["LLM Combines Evidence"]
+    H["Final Answer"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> D
+    F --> G
+    G --> H

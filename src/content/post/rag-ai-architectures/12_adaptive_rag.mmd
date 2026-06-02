@@ -1,0 +1,19 @@
+flowchart TD
+    A["User Question"]
+    B["Query Classifier"]
+    C{"Question Type"}
+    D["Direct LLM Answer"]
+    E["Basic RAG"]
+    F["Multi-Step RAG"]
+    G["Tool / SQL / API"]
+    H["Final Answer"]
+    A --> B
+    B --> C
+    C --> D
+    C --> E
+    C --> F
+    C --> G
+    D --> H
+    E --> H
+    F --> H
+    G --> H
