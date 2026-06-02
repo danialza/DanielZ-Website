@@ -4,8 +4,8 @@ publishDate: "2 June 2026"
 description: "A practical overview of RAG AI architectures, from Naive RAG to Agentic and Secure Enterprise RAG, with my personal view on where each one fits."
 tags: ["ai", "rag", "llm"]
 coverImage:
-  alt: "Agentic RAG flowchart"
-  src: "./13_agentic_rag.png"
+  alt: "RAG AI architectures cover illustration"
+  src: "./rag-ai-architectures-cover.png"
 ---
 
 Retrieval-Augmented Generation, or **RAG**, is one of the most useful ideas in modern AI engineering. The simple version is easy to explain: instead of asking an LLM to answer only from memory, we first retrieve relevant information, then ask the model to answer using that evidence.
@@ -13,6 +13,8 @@ Retrieval-Augmented Generation, or **RAG**, is one of the most useful ideas in m
 My personal view is that **RAG is better than using an LLM alone whenever the answer depends on private, updated, technical, or domain-specific knowledge**. A standalone model can sound confident, but it does not know your internal documents, your latest data, your product catalogue, your CV database, or your project files unless you give that context to it.
 
 For me, the best default is usually not Naive RAG. I prefer starting with **Hybrid RAG + Query Transform + Reranking**. That combination gives a practical balance: semantic understanding, exact keyword matching, better search phrasing, and cleaner final context. I use Agentic RAG only when the task really needs planning, tools, or multiple steps, because it is powerful but harder to control.
+
+I also created a small companion GitHub playbook with one shared example, short pseudo-code, and a simple result for each architecture: [RAG Architectures Playbook](https://github.com/danialza/RAG-Architectures-Playbook).
 
 ## Where I use each style
 
