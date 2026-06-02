@@ -43,6 +43,12 @@ Using one example makes the differences easier to see. Instead of only saying "t
 
 These are not benchmark numbers. They are practical expected-fit scores for the shared university chatbot example, based on what each architecture is designed to do.
 
+## Architecture Fit Map
+
+![RAG architecture quadrant fit map](./img/rag-ai-architectures/rag-quadrant-fit-map.png)
+
+This map shows the same result from another angle: **practical value vs build complexity**. I grouped the architectures instead of plotting every label as a separate point, because the full scatter view becomes hard to read with 24 patterns.
+
 | Architecture | Fit | Expected Result |
 |---|---:|---|
 | Agentic RAG | `█████████░` 9/10 | Best when the chatbot must plan steps and check tools. |
