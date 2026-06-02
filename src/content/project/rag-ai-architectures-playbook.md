@@ -4,8 +4,8 @@ publishDate: "2026-06-02"
 description: "A practical RAG architectures playbook with 24 patterns, one shared example, pseudo-code, result comparison, and my preferred production starting point."
 tags: ["ai", "python", "rag", "llm"]
 coverImage:
-  alt: "RAG architectures result map showing recommended stack and expected fit scores"
-  src: "./img/rag-ai-architectures/rag-result-map-linkedin.png"
+  alt: "RAG Architectures Playbook cover with decision lens"
+  src: "./img/rag-ai-architectures/rag-ai-architectures-cover.png"
 ---
 
 ## Role
