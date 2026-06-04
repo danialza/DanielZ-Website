@@ -135,11 +135,11 @@ Preprint:
 
 ## Repository Access Status
 
-To avoid exposing unreleased implementation details, the active implementation codebase is kept in a private repository. The public GitHub repository is maintained as a minimal README-only access page that points readers to the preprint, this project page, and the author contact emails.
+To avoid exposing unreleased implementation details, the active implementation codebase is kept in a private repository. The public GitHub repository is maintained as an access-safe companion snapshot: project file names, figures, tables, and README descriptions remain visible, while Python implementation bodies are replaced with access-request placeholders.
 
 Current public README wording:
 
-> The implementation code and experiment artefacts for this preprint are currently under controlled access. For access requests, reviewer material, or collaboration enquiries, please contact Danial Zafaranchizadeh Moghaddam at `danial.za@outlook.com` or Abolfazl Zaraki at `a.zaraki@herts.ac.uk`. Public project information is available at <https://danielz.co.uk/projects/hardware-aware-nussbaum-pid/>.
+> This public repository keeps the project page, file names, figures, tables, and README descriptions visible for manuscript context. The Python implementation bodies have been removed from the public copy. For access to the implementation code, reviewer material, or collaboration details, please email Danial Zafaranchizadeh Moghaddam at `danial.za@outlook.com` or Abolfazl Zaraki at `a.zaraki@herts.ac.uk`.
 
 Before making any repository public, remove API keys, local paths, raw hardware-control scripts that should not be disclosed, generated logs that identify private setups, and any unpublished supplementary material.
 
