@@ -90,25 +90,18 @@ Parameters were selected from a hardware-aware Optuna archive of **79 real-hardw
 
 ## Code and Access
 
-The paper’s implementation, experiment scripts, raw trial artefacts, and figure-generation utilities are currently being kept under controlled access rather than being fully public.
+The public companion repository keeps the project file names, figures, tables, selected public artefacts, and README descriptions visible for manuscript context. Python implementation bodies are not included in the public copy.
 
-Public repository access page:
+Public repository:
 
 - [danialza/hardware-aware-nussbaum-pid](https://github.com/danialza/hardware-aware-nussbaum-pid)
 
-For access to the code or supplementary implementation details, please contact:
+For full code access, reviewer material, or supplementary implementation details, please email:
 
 - Danial Zafaranchizadeh Moghaddam — `danial.za@outlook.com`
 - Abolfazl Zaraki — `a.zaraki@herts.ac.uk`
 
-Planned access model:
-
-- Keep the active implementation repository private.
-- Publish only non-sensitive material on the public project page and preprint record.
-- Share code, logs, and scripts with reviewers or collaborators on request.
-- If a public artefact is needed later, release a cleaned companion package that excludes private hardware-control details, credentials, raw local paths, and unreleased experiment scripts.
-
-This page will remain the public landing page for the study while access to the implementation is handled privately.
+Please include your affiliation, intended use, and whether the request is for review, reproduction, or collaboration.
 
 ## Experimental Scope
 
@@ -123,11 +116,11 @@ Beyond the validated low-frequency envelope, the bandwidth probes show where the
 
 ## Citation and Reuse
 
-If you use the figures, experimental methodology, or any controlled-access implementation material shared with you, please cite the preprint and acknowledge the project page.
+If you use the figures, experimental methodology, or any implementation material shared with you by email, please cite the preprint and acknowledge the project page.
 
 Recommended project-page reference:
 
-> Project page and controlled-access implementation notes are available at: <https://danielz.co.uk/projects/hardware-aware-nussbaum-pid/>
+> Project page and full-code access notes are available at: <https://danielz.co.uk/projects/hardware-aware-nussbaum-pid/>
 
 Preprint:
 
@@ -135,13 +128,13 @@ Preprint:
 
 ## Repository Access Status
 
-To avoid exposing unreleased implementation details, the active implementation codebase is kept in a private repository. The public GitHub repository is maintained as an access-safe companion snapshot: project file names, figures, tables, and README descriptions remain visible, while Python implementation bodies are replaced with access-request placeholders.
+The public GitHub repository is maintained as an access-safe companion snapshot: project file names, figures, tables, selected public artefacts, and README descriptions remain visible, while Python implementation bodies are replaced with access-request placeholders.
 
 Current public README wording:
 
-> This public repository keeps the project page, file names, figures, tables, and README descriptions visible for manuscript context. The Python implementation bodies have been removed from the public copy. For access to the implementation code, reviewer material, or collaboration details, please email Danial Zafaranchizadeh Moghaddam at `danial.za@outlook.com` or Abolfazl Zaraki at `a.zaraki@herts.ac.uk`.
+> This public repository keeps the project page, file names, figures, tables, and README descriptions visible for manuscript context. Python implementation bodies are not included in the public copy. For full code access, reviewer material, or collaboration details, please email Danial Zafaranchizadeh Moghaddam at `danial.za@outlook.com` or Abolfazl Zaraki at `a.zaraki@herts.ac.uk`.
 
-Before making any repository public, remove API keys, local paths, raw hardware-control scripts that should not be disclosed, generated logs that identify private setups, and any unpublished supplementary material.
+Before using any shared implementation material, please cite the preprint and keep author attribution with the project.
 
 ## Related Work
 
