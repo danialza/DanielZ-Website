@@ -126,16 +126,6 @@ Preprint:
 
 > Real-Hardware Deployment of a Nussbaum-Function PID Controller on a Current-Controlled Low-Cost Actuator via Hardware-Aware Optuna Tuning. Preprints.org manuscript 202606.0331, 2026.
 
-## Repository Access Status
-
-The public GitHub repository is maintained as an access-safe companion snapshot: project file names, figures, tables, selected public artefacts, and README descriptions remain visible, while Python implementation bodies are replaced with access-request placeholders.
-
-Current public README wording:
-
-> This public repository keeps the project page, file names, figures, tables, and README descriptions visible for manuscript context. Python implementation bodies are not included in the public copy. For full code access, reviewer material, or collaboration details, please email Danial Zafaranchizadeh Moghaddam at `danial.za@outlook.com` or Abolfazl Zaraki at `a.zaraki@herts.ac.uk`.
-
-Before using any shared implementation material, please cite the preprint and keep author attribution with the project.
-
 ## Related Work
 
 - [Ned3 Pro Adaptive Controller](/projects/ned3pro-adaptive-controller/)
