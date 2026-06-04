@@ -1,6 +1,6 @@
 ---
-title: "Article: Hardware-Aware Nussbaum-PID Controller"
-description: "Companion page for a real-hardware Nussbaum-PID study on the Niryo NED3 Pro, including headline metrics, diagrams, figures, and reproducibility links."
+title: "Article: Nussbaum-PID Real-Hardware Deployment"
+description: "Companion page for the preprint on real-hardware Nussbaum-PID deployment on a current-controlled Niryo NED3 Pro actuator."
 publishDate: "2026-05-27"
 coverImage:
   src: "./img/hardware-aware-nussbaum-pid-cover.webp"
@@ -10,21 +10,25 @@ tags: ["robotics", "python"]
 
 ## Article
 
-**Hardware-Aware Experimental Assessment of a Nussbaum-Function PID Controller on a Low-Cost Manipulator Joint Using Optuna-Guided Tuning**
+**Real-Hardware Deployment of a Nussbaum-Function PID Controller on a Current-Controlled Low-Cost Actuator via Hardware-Aware Optuna Tuning**
 
-Danial Zafaranchizadeh Moghaddam and Abolfazl Zaraki, University of Hertfordshire, 2026.
+Danial Zafaranchizadeh Moghaddam, Olga Tveretina, and Abolfazl Zaraki, University of Hertfordshire, 2026.
 
-This page provides the public companion material for the manuscript. It links to the code, figure-generation scripts, manuscript source, and experimental artefacts used to support the results reported in the article.
+This page provides project context, visual summaries, headline metrics, and access information for the preprint version of the manuscript.
+
+**Preprint:** [preprints.org/manuscript/202606.0331](https://www.preprints.org/manuscript/202606.0331)
+
+The article is currently available as a preprint and has been submitted to *Sensors*.
 
 ## One-Line Abstract
 
-The paper shows that a direct Nussbaum-PID implementation degrades on the low-cost NED3 Pro actuator, then demonstrates that a hardware-aware regularized variant recovers usable 300 s tracking with low error and limited saturation.
+The paper shows that a direct Nussbaum-PID implementation degrades on a current-controlled low-cost actuator, then demonstrates that a hardware-aware Optuna-tuned variant recovers usable 300 s tracking by managing adaptation growth, actuation mapping, and saturation.
 
 ## Project Summary
 
-This work studies a hardware-aware Nussbaum-function PID controller on a low-cost manipulator joint, using the **Niryo NED3 Pro** as the experimental platform.
+This work studies real-hardware deployment of a Nussbaum-function PID controller on a current-controlled low-cost manipulator actuator, using the **Niryo NED3 Pro** as the experimental platform.
 
-The experiments focus on real-hardware trajectory tracking for **Dynamixel ID 6 (Niryo J5)** in raw current mode. The controller and tuning workflow were evaluated under sinusoidal, step, and out-of-envelope bandwidth-probe conditions, with reproducible scripts used to regenerate the publication figures and tables from the experiment logs.
+The experiments focus on real-hardware trajectory tracking for **Dynamixel ID 6 (Niryo J5 / distal wrist)** in raw current-command control. The study isolates deployment-layer behaviour from whole-arm Coriolis, centrifugal, and gravity dynamics, then tests how friction, encoder quantization, current limits, communication latency, and low-speed nonlinearities affect an adaptive controller that works cleanly in paper-level or simulation settings.
 
 ## Headline Result
 
@@ -38,7 +42,15 @@ Enhanced Nussbaum-PID on **Dynamixel ID 6 / Niryo J5**, 300 s sinusoidal validat
 | Max \|e\| | 6.530 degree |
 | Saturation | 1.2% |
 
-The direct baseline implementation degrades to **MAE = 10.476 degree** on the same actuator. The paper characterizes why this happens and proposes a hardware-oriented regularization that recovers usable real-hardware tracking.
+The direct baseline implementation degrades to **MAE = 10.476 degree** and an internal command saturation ratio of **0.450** on the same actuator. The enhanced implementation reduces the internal command saturation ratio to **0.012** while preserving the Nussbaum-PID core.
+
+The tuned implementation adds three practical deployment layers:
+
+- adaptation-state regularization
+- low-speed velocity-reference feedforward
+- tail-region damping
+
+Parameters were selected from a hardware-aware Optuna archive of **79 real-hardware trials**, with unsafe runs rejected and the score jointly reflecting tracking quality, saturation, actuation activity, and bounded adaptation growth.
 
 ## Visual Summary
 
@@ -76,28 +88,27 @@ The direct baseline implementation degrades to **MAE = 10.476 degree** on the sa
 
 *Optuna search dashboard used to summarize tuning progress.*
 
-## Code and Reproducibility
+## Code and Access
 
-The full companion repository is available on GitHub:
+The paper’s implementation, experiment scripts, raw trial artefacts, and figure-generation utilities are currently being kept under controlled access rather than being fully public.
+
+Public repository access page:
 
 - [danialza/hardware-aware-nussbaum-pid](https://github.com/danialza/hardware-aware-nussbaum-pid)
 
-The repository includes:
+For access to the code or supplementary implementation details, please contact:
 
-- LaTeX manuscript source and references
-- MDPI `Sensors` class files used for the manuscript build
-- Publication figures and tables
-- Python scripts for regenerating the main result figures
-- Hardware reference photos and control-system illustrations
-- Notes for rebuilding the manuscript and rerunning the figure pipeline
+- Danial Zafaranchizadeh Moghaddam — `danial.za@outlook.com`
+- Abolfazl Zaraki — `a.zaraki@herts.ac.uk`
 
-## Main Repository Areas
+Planned access model:
 
-- [Manuscript source](https://github.com/danialza/hardware-aware-nussbaum-pid/blob/main/manuscript.tex)
-- [Figure-generation scripts](https://github.com/danialza/hardware-aware-nussbaum-pid/tree/main/scripts)
-- [Publication figures](https://github.com/danialza/hardware-aware-nussbaum-pid/tree/main/figures)
-- [Publication tables](https://github.com/danialza/hardware-aware-nussbaum-pid/tree/main/tables)
-- [Hardware and reference assets](https://github.com/danialza/hardware-aware-nussbaum-pid/tree/main/assets)
+- Keep the active implementation repository private.
+- Publish only non-sensitive material on the public project page and preprint record.
+- Share code, logs, and scripts with reviewers or collaborators on request.
+- If a public artefact is needed later, release a cleaned companion package that excludes private hardware-control details, credentials, raw local paths, and unreleased experiment scripts.
+
+This page will remain the public landing page for the study while access to the implementation is handled privately.
 
 ## Experimental Scope
 
@@ -112,11 +123,25 @@ Beyond the validated low-frequency envelope, the bandwidth probes show where the
 
 ## Citation and Reuse
 
-If you use the code, scripts, figures, or experimental methodology, please cite the manuscript above and refer to the companion GitHub repository.
+If you use the figures, experimental methodology, or any controlled-access implementation material shared with you, please cite the preprint and acknowledge the project page.
 
-Recommended project-page reference for the manuscript:
+Recommended project-page reference:
 
-> Project code and reproducibility material are available at: <https://danielz.co.uk/projects/hardware-aware-nussbaum-pid/>
+> Project page and controlled-access implementation notes are available at: <https://danielz.co.uk/projects/hardware-aware-nussbaum-pid/>
+
+Preprint:
+
+> Real-Hardware Deployment of a Nussbaum-Function PID Controller on a Current-Controlled Low-Cost Actuator via Hardware-Aware Optuna Tuning. Preprints.org manuscript 202606.0331, 2026.
+
+## Repository Access Status
+
+To avoid exposing unreleased implementation details, the active implementation codebase is kept in a private repository. The public GitHub repository is maintained as a minimal README-only access page that points readers to the preprint, this project page, and the author contact emails.
+
+Current public README wording:
+
+> The implementation code and experiment artefacts for this preprint are currently under controlled access. For access requests, reviewer material, or collaboration enquiries, please contact Danial Zafaranchizadeh Moghaddam at `danial.za@outlook.com` or Abolfazl Zaraki at `a.zaraki@herts.ac.uk`. Public project information is available at <https://danielz.co.uk/projects/hardware-aware-nussbaum-pid/>.
+
+Before making any repository public, remove API keys, local paths, raw hardware-control scripts that should not be disclosed, generated logs that identify private setups, and any unpublished supplementary material.
 
 ## Related Work
 
