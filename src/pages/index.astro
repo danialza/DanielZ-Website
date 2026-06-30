@@ -10,7 +10,7 @@ import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
 
 // Projects
-const FEATURED_PROJECTS = 8;
+const FEATURED_PROJECTS = 12;
 const MAX_TEXT_PROJECTS = 8;
 const allProjects = await getAllProjects();
 const allProjectsByDate = allProjects.sort(collectionDateSort) as CollectionEntry<"project">[];
