@@ -4,7 +4,7 @@ description: "A beginner-friendly Python project that explains AI evaluation har
 publishDate: "2026-07-02"
 coverImage:
   src: "./img/ai-evaluation-harness-cover.webp"
-  alt: "A glowing digital AI creature being fitted with an evaluation harness in a dark lab"
+  alt: "What is AI Harness cover with a glowing digital AI creature being fitted with a testing harness"
 tags: ["ai", "python", "llm", "automation"]
 ---
 
