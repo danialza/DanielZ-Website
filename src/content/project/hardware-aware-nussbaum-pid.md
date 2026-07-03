@@ -1,6 +1,6 @@
 ---
 title: "Article: Nussbaum-PID Real-Hardware Deployment"
-description: "Companion page for the preprint on real-hardware Nussbaum-PID deployment on a current-controlled Niryo NED3 Pro actuator."
+description: "Companion page for the published Sensors article on real-hardware Nussbaum-PID deployment on a current-controlled Niryo NED3 Pro actuator."
 publishDate: "2026-05-27"
 coverImage:
   src: "./img/hardware-aware-nussbaum-pid-cover.webp"
@@ -14,11 +14,17 @@ tags: ["robotics", "python"]
 
 Danial Zafaranchizadeh Moghaddam, Olga Tveretina, and Abolfazl Zaraki, University of Hertfordshire, 2026.
 
-This page provides project context, visual summaries, headline metrics, and access information for the preprint version of the manuscript.
+This page provides project context, visual summaries, headline metrics, citation information, and access notes for the published article.
 
-**Preprint:** [preprints.org/manuscript/202606.0331](https://www.preprints.org/manuscript/202606.0331)
+**Published article:** [Sensors 2026, 26(13), 4212](https://www.mdpi.com/1424-8220/26/13/4212)
 
-The article is currently available as a preprint and has been submitted to *Sensors*.
+**DOI:** [10.3390/s26134212](https://doi.org/10.3390/s26134212)
+
+**PDF:** [MDPI PDF](https://www.mdpi.com/1424-8220/26/13/4212/pdf)
+
+**Preprint archive:** [preprints.org/manuscript/202606.0331](https://www.preprints.org/manuscript/202606.0331)
+
+The MDPI publication is the version of record and should be cited for scientific use. The preprint remains useful as a public history of the manuscript before journal publication.
 
 ## One-Line Abstract
 
@@ -51,6 +57,103 @@ The tuned implementation adds three practical deployment layers:
 - tail-region damping
 
 Parameters were selected from a hardware-aware Optuna archive of **79 real-hardware trials**, with unsafe runs rejected and the score jointly reflecting tracking quality, saturation, actuation activity, and bounded adaptation growth.
+
+## Publication and Citation
+
+If you use this work, please cite the published *Sensors* article:
+
+> Zafaranchizadeh Moghaddam, D.; Tveretina, O.; Zaraki, A. Real-Hardware Deployment of a Nussbaum-Function PID Controller on a Current-Controlled Low-Cost Actuator via Hardware-Aware Optuna Tuning. *Sensors* **2026**, *26*(13), 4212. <https://doi.org/10.3390/s26134212>
+
+BibTeX:
+
+```bibtex
+@article{zafaranchizadeh_moghaddam_2026_nussbaum_pid_hardware,
+  title = {Real-Hardware Deployment of a Nussbaum-Function PID Controller on a Current-Controlled Low-Cost Actuator via Hardware-Aware Optuna Tuning},
+  author = {Zafaranchizadeh Moghaddam, Danial and Tveretina, Olga and Zaraki, Abolfazl},
+  journal = {Sensors},
+  volume = {26},
+  number = {13},
+  pages = {4212},
+  year = {2026},
+  publisher = {MDPI},
+  doi = {10.3390/s26134212},
+  url = {https://www.mdpi.com/1424-8220/26/13/4212}
+}
+```
+
+Project-page reference:
+
+```text
+Project page and full-code access notes:
+https://danielz.co.uk/projects/hardware-aware-nussbaum-pid/
+```
+
+## Method and Tool References
+
+The article builds on several components that should be acknowledged when they are used in related work.
+
+### Optuna
+
+Optuna was used for the hardware-aware tuning archive and controller-parameter search.
+
+Recommended citation:
+
+> Akiba, T.; Sano, S.; Yanase, T.; Ohta, T.; Koyama, M. Optuna: A Next-generation Hyperparameter Optimization Framework. In *Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 2019. <https://doi.org/10.1145/3292500.3330701>
+
+BibTeX:
+
+```bibtex
+@inproceedings{akiba_2019_optuna,
+  title = {Optuna: A Next-generation Hyperparameter Optimization Framework},
+  author = {Akiba, Takuya and Sano, Shotaro and Yanase, Toshihiko and Ohta, Takeru and Koyama, Masanori},
+  booktitle = {Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
+  year = {2019},
+  doi = {10.1145/3292500.3330701}
+}
+```
+
+### Nussbaum-Gain Background
+
+The controller is based on the Nussbaum-function idea for systems with unknown control direction.
+
+Recommended citation:
+
+> Nussbaum, R.D. Some Remarks on a Conjecture in Parameter Adaptive Control. *Systems & Control Letters* **1983**, *3*(5), 243-246. <https://doi.org/10.1016/0167-6911(83)90021-X>
+
+BibTeX:
+
+```bibtex
+@article{nussbaum_1983_adaptive_control,
+  title = {Some Remarks on a Conjecture in Parameter Adaptive Control},
+  author = {Nussbaum, R. D.},
+  journal = {Systems & Control Letters},
+  volume = {3},
+  number = {5},
+  pages = {243--246},
+  year = {1983},
+  doi = {10.1016/0167-6911(83)90021-X}
+}
+```
+
+### Source Nussbaum-PID Controller
+
+The real-hardware study starts from the Nussbaum-function PID formulation reported for robot-manipulator tracking control.
+
+Recommended citation:
+
+> Rahimi Nohooji, H.; Voos, H. Nussbaum Function Based PID Approach for Tracking Control of Robot Manipulators. In *Proceedings of the 2024 32nd Mediterranean Conference on Control and Automation (MED)*, Chania, Greece, 2024.
+
+BibTeX:
+
+```bibtex
+@inproceedings{rahimi_nohooji_2024_nussbaum_pid_robot_manipulators,
+  title = {Nussbaum Function Based PID Approach for Tracking Control of Robot Manipulators},
+  author = {Rahimi Nohooji, H. and Voos, H.},
+  booktitle = {Proceedings of the 2024 32nd Mediterranean Conference on Control and Automation (MED)},
+  address = {Chania, Greece},
+  year = {2024}
+}
+```
 
 ## Visual Summary
 
@@ -116,15 +219,9 @@ Beyond the validated low-frequency envelope, the bandwidth probes show where the
 
 ## Citation and Reuse
 
-If you use the figures, experimental methodology, or any implementation material shared with you by email, please cite the preprint and acknowledge the project page.
+If you use the figures, experimental methodology, or any implementation material shared with you by email, please cite the published *Sensors* article and acknowledge the project page when it is useful for code-access context.
 
-Recommended project-page reference:
-
-> Project page and full-code access notes are available at: <https://danielz.co.uk/projects/hardware-aware-nussbaum-pid/>
-
-Preprint:
-
-> Real-Hardware Deployment of a Nussbaum-Function PID Controller on a Current-Controlled Low-Cost Actuator via Hardware-Aware Optuna Tuning. Preprints.org manuscript 202606.0331, 2026.
+The public GitHub repository is a companion snapshot for figures, tables, README descriptions, and manuscript context. Full implementation access is handled by request so that review, reproduction, and collaboration use can be tracked properly.
 
 ## Related Work
 
