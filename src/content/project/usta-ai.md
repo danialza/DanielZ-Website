@@ -2,6 +2,7 @@
 title: "Usta - Native macOS Multi-Agent IDE"
 description: "A native macOS IDE that turns one project brief into a coordinated AI engineering team with a PM agent, specialist roles, real PTYs, and a shared event bus."
 publishDate: "2026-06-12"
+updatedDate: "2026-07-04"
 coverImage:
   src: "./img/usta-ai-cover.png"
   alt: "Usta AI engineering team product cover"
@@ -26,6 +27,7 @@ The result is a workspace where frontend, backend, QA, security, design, DevOps,
 - [GitHub repository](https://github.com/danialza/Usta)
 - [Visual guide](https://usta-ai.vercel.app/guide.html)
 - [macOS releases](https://github.com/danialza/Usta/releases)
+- [Latest release: v0.2.0](https://github.com/danialza/Usta/releases/tag/v0.2.0)
 
 ## Product Screenshots
 
@@ -50,15 +52,23 @@ The result is a workspace where frontend, backend, QA, security, design, DevOps,
 - Keychain-backed API key storage so provider credentials are not written to normal project files.
 - MCP server support so external MCP-compatible clients can interact with Usta's bus.
 - Skills system for reusable behaviours such as memory, TDD, diagnosis, and sharper clarification flows.
-- Public product website, visual guide, GitHub release flow, README, licensing, and trademark notes.
+- Live handoff graph that shows the team as a role-based DAG with state-coloured nodes, handoff edges, and event pulses.
+- Per-role token and cost dashboard reconstructed from local Claude and Codex session logs.
+- Session replay for scrubbing through a full run event-by-event, with self-contained HTML export for sharing.
+- Shareable team templates through `.ustateam.yaml` import/export and a starter template gallery.
+- Opt-in git worktree isolation so each role can work on its own `usta/<role>` branch before merge-back.
+- Opt-in cross-vendor review flow where one model family can implement and another can critique.
+- Zero-key demo mode for watching a full orchestrated run before adding provider credentials.
+- Public product website, visual guide, GitHub release flow, Homebrew cask, README, licensing, and trademark notes.
 
 ## How It Works
 
-The core workflow has three stages:
+The core workflow has four stages:
 
 1. Open a codebase or describe a new idea.
 2. The PM agent analyzes the project and proposes a purpose-built team.
 3. Usta launches the selected specialists as parallel sessions, then uses the event bus and watcher loop to coordinate handoffs.
+4. The user can inspect the live handoff graph, track per-role cost, replay the run, and export a shareable HTML trace.
 
 Instead of forcing every task through one chat context, Usta separates responsibility across roles. A frontend agent can focus on UI, a backend agent can work on API concerns, QA can react when implementation lands, and a docs agent can capture the outcome. The user stays in the loop, but no longer has to manually copy every handoff between assistants.
 
@@ -71,7 +81,10 @@ Instead of forcing every task through one chat context, Usta separates responsib
 - Agent providers: Anthropic, Gemini, and Ollama
 - Security: macOS Keychain for API keys
 - Integration layer: MCP stdio server
-- Distribution: macOS DMG release workflow through GitHub Releases
+- Observability: live handoff graph, role states, event pulses, cost dashboard, and session replay
+- Team portability: `.ustateam.yaml` templates with replace-or-merge import
+- Git isolation: opt-in per-role worktrees and `usta/<role>` branches
+- Distribution: macOS DMG and ZIP release workflow through GitHub Releases, plus Homebrew cask install
 - Product site: static landing page and visual guide deployed on Vercel
 
 ## Engineering Focus
@@ -83,18 +96,35 @@ Usta is designed around the parts of software work that single-assistant workflo
 - Terminal reality: each role should have a live shell, not just abstract tool calls.
 - Local control: user code, credentials, and context should stay on the user's machine wherever possible.
 - Recoverability: scrollback, role state, and event history should survive daemon restarts.
+- Observability: users should be able to see who is working, who is blocked, what each handoff means, and what the run costs.
+- Shareability: team definitions and run history should be easy to export without turning the desktop app into a cloud product.
+
+## July 2026 Update - v0.2.0
+
+**Usta v0.2.0 - see the team think** moves the project from a first public macOS release into a more observable and shareable multi-agent engineering environment.
+
+The main update is visibility. Usta now includes a live handoff graph, showing roles as an animated DAG with state-coloured nodes, handoff edges, and event pulses. This makes the orchestration layer easier to understand while the team is working.
+
+The release also adds a per-role cost dashboard, session replay, and self-contained HTML export. A full agent run can now be reviewed after the fact, scrubbed event-by-event, and shared as a standalone replay instead of being trapped inside the local app session.
+
+Team setup is more portable too. Usta can export and import complete teams as `.ustateam.yaml` templates, with replace-or-merge behaviour and a starter gallery for reusable role definitions. For code changes, the new opt-in worktree mode gives each specialist its own isolated `usta/<role>` branch, reducing file conflicts between parallel agents and supporting one-click merge-back.
+
+The update also introduces opt-in cross-vendor review, where a role can ship work and another model family can critique it with a ready-to-send review prompt. A zero-key demo mode now lets users watch a full orchestrated team run before adding any API key.
+
+Performance and release polish were improved as well: CLIs launch lazily, sleeping panes detach from the renderer, two SwiftUI grid-related freezes were fixed with a deterministic custom layout, an in-app update banner checks GitHub releases daily, and installation is now available through both GitHub release assets and Homebrew.
 
 ## Current Status
 
-Usta has its first public macOS release available through GitHub Releases. The current version is focused on proving the multi-agent desktop workflow, the PM planning loop, the event bus, the native workspace experience, and the release path for early users.
+Usta has a public macOS release available through GitHub Releases and Homebrew. As of v0.2.0, the focus is on making multi-agent engineering observable, replayable, and easier to share: live handoff graph, per-role cost dashboard, session replay, team templates, worktree isolation, cross-vendor review, and a zero-key demo.
 
 ## Roadmap
 
 - Expand beyond macOS with Linux and Windows support.
 - Strengthen fully local workflows with Ollama-first defaults.
-- Add a community role marketplace for sharing specialist role definitions.
+- Grow the team-template gallery into a community role marketplace for sharing specialist role definitions.
 - Add cloud sync for the event log where users want cross-machine continuity.
 - Explore a VS Code extension as an alternative interface for the same coordination model.
+- Extend cost, replay, and review workflows for larger multi-agent projects.
 
 ## Skills
 
@@ -106,3 +136,5 @@ Usta has its first public macOS release available through GitHub Releases. The c
 - LLM Tooling
 - Product Design
 - Developer Experience
+- Performance Engineering
+- CI and Release Engineering
