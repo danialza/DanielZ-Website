@@ -43,6 +43,11 @@
 			"permanent": true
 		},
 		{
+			"source": "/downloads/research-associate-learning-based-robotic-carving-presentation.pptx",
+			"destination": "https://github.com/danialza/DanielZ-Website/releases/download/research-carving-presentation-2026-08-05/research-associate-learning-based-robotic-carving-presentation.pptx",
+			"permanent": true
+		},
+		{
 			"source": "/notes",
 			"destination": "/",
 			"permanent": false
