@@ -26,7 +26,7 @@ Danial Zafaranchizadeh Moghaddam¹, Maryam Banitalebi Dehkordi¹, Hamed Rahimi N
 
 ## One-Line Abstract
 
-A safety margin derived from a vision-language verdict is only as valid as that verdict is recent, and AEGIS is the first safe-action projection whose hold radius is an explicit function of the age of the evidence that set it.
+A safety margin derived from a vision-language verdict is only as valid as that verdict is recent, and AEGIS formulates and integrates for this manipulation architecture a safe-action projection whose hold radius is an explicit function of the age of the evidence that set it.
 
 ## Project Summary
 
