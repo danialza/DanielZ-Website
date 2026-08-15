@@ -1,7 +1,7 @@
 ---
 title: "Article: AEGIS Age-Aware Safe-Action Layer"
 description: "Companion page for AEGIS, an age-aware safe-action projection that combines RGB-D sensing with asynchronous vision-language monitoring on a Niryo NED3 Pro."
-publishDate: "2026-08-12"
+publishDate: "2026-08-15"
 coverImage:
   src: "./img/aegis-age-aware-safe-action-cover-v2.webp"
   alt: "AEGIS age-aware safe-action layer deployed on a Niryo NED3 Pro with a fixed Intel RealSense camera"
@@ -26,7 +26,13 @@ Danial Zafaranchizadeh Moghaddam¹, Maryam Banitalebi Dehkordi¹, Hamed Rahimi N
 
 ## One-Line Abstract
 
-A safety margin derived from a vision-language verdict is only as valid as that verdict is recent, and AEGIS formulates and integrates for this manipulation architecture a safe-action projection whose hold radius is an explicit function of the age of the evidence that set it.
+AEGIS is a policy-agnostic safe-action projection for manipulation whose hold radius depends on semantic belief and verdict age; with the epistemic buffer matched at zero, it kept 41% of semantic-switch episodes free of any commanded approach to a person, compared with 27% for trust-latest (*n* = 250 matched seeds, *p* = 2.7 × 10⁻⁴).
+
+## Project Overview Video
+
+<video controls playsinline preload="metadata" poster="/videos/aegis/aegis-project-overview-poster.jpg" src="/videos/aegis/aegis-project-overview.mp4" style="width:100%;"></video>
+
+*A five-minute walkthrough of the complete AEGIS pipeline, from real-hardware semantic routing and protective holds to simulation audits of the safe-action layer.*
 
 ## Project Summary
 
@@ -49,14 +55,20 @@ In words, the hold radius is the detected footprint plus mechanical clearance, t
 
 | Quantity | Result |
 | --- | --- |
+| Age-indexed vs trust-latest, mechanism isolation | 41% vs 27% human-safe, exact McNemar *p* = 2.7 × 10⁻⁴, *n* = 250 matched seeds, epistemic buffer = 0 for both |
+| Same comparison with a shared 25 mm buffer | 19% vs 20% human-safe, *p* = 0.78; the wider radius increases dwell beside the hazard |
+| Constant-belief ablation | no tested constant belief is competitive on both delivery and human-safe outcomes |
+| Full 6-DoF simulation, same delivery | 73.3% vs 46.7% human-respecting clearance for AEGIS vs trust-latest, with 90% delivery for both, *n* = 30 |
 | Per-step unsafe cost, sampling-based planner | 0.138 → 0.0086 (16×), Wilcoxon *p* = 1×10⁻⁶, *n* = 36 paired episodes |
 | Task success, same comparison | 65% → 92%, exact McNemar *p* = 0.007 |
 | Physical AEGIS runs | minimum moving clearance +19.7 mm, never negative |
 | Physical trust-latest baseline | one run entered the detected footprint at −5.6 mm |
-| Physical worst-case baseline | never commanded motion while a hazard was tracked |
+| Physical worst-case baseline | zero moving ticks across 1,563 hazard ticks; no delivery when the obstacle remained |
 | On-device semantic verdict | FastVLM-0.5B, 0.236 s mean, 0.238 s p95, 20 timed queries |
 | Image-to-table calibration | 0.92 mm mean fitting residual over nine points |
 | Hand-to-freeze reaction, hosted backend | 1.73 s mean, 2.67 s worst, *n* = 5 intrusions |
+
+The mechanism result is a position in a trade-off, not dominance over both endpoints. Worst-case is safest when waiting is free, but delivers 0% when a persistent obstacle blocks the corridor; AEGIS delivers every episode in that persistent case. The 41% vs 27% result is the unconfounded comparison of the age-indexed rule. The small physical comparison does not hold the buffer fixed and is therefore a mechanism demonstration, not the primary statistical test.
 
 Task success rises because the projection removes boundary- and obstacle-grazing commands that were also causing the planner to fail, so safety and task performance move together rather than trading off.
 
@@ -94,9 +106,11 @@ Task success rises because the projection removes boundary- and obstacle-grazing
 
 The clearance result is proved for the constrained tool point, not the whole arm. A whole-arm audit found the forearm crossing the hazard sphere in 7 of 120 simulated episodes. This is why the work is described as **collision-aware**, not collision-free.
 
-Verdict age is currently measured from the time inference returns rather than the time the image was captured. That shortens the enforced age and can under-size the radius by up to 29.6 mm. The 25 mm epistemic buffer absorbs most of this error, but does not erase the clock mismatch.
+Verdict age is currently measured from the time inference returns rather than the time the image was captured. That shortens the enforced age and can under-size the radius by up to 29.8 mm in simulation and 17.9 mm on the arm. The respective 25 mm and 12 mm epistemic buffers absorb most, but not all, of this clock error.
 
-The semantic parser also fails permissively: an unreadable reply is interpreted as zero hands. Safety in that case comes from the geometric layer, not from an assumed perfect language model. Finally, the physical runs were conducted below the sufficient buffer-sizing condition proved in the paper, so the hardware result is empirical rather than an instance of that guarantee. Stating these boundaries alongside the run logs makes the work reproducible: each claim can be checked against the evidence tier that supports it, without promoting a local observation into a system-level safety claim.
+The semantic parser also fails permissively: an unreadable reply is interpreted as zero hands. Safety in that case comes from the geometric layer, not from an assumed perfect language model. The conditional propositions depend on stated assumptions, and the deployed semantic scores and buffers do not establish their sufficient condition, so the hardware result remains empirical rather than an instance of that guarantee.
+
+The −5.6 mm trust-latest event followed a four-tick, 0.5 s loss of the intruder track. Clearance was increasing on every negative tick, so no inward command was admitted; the observation shows that the smaller margin admitted an incursion during a perception gap, not that verdict trust alone caused it. The hardware reference-policy sample is also small and unequal. Stating these boundaries alongside the run logs keeps each claim tied to the evidence tier that supports it.
 
 The distance margin is informed by ISO/TS 15066 speed-and-separation concepts, but this prototype is neither an implementation nor a certification of that standard.
 
