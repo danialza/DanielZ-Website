@@ -1,7 +1,7 @@
 ---
 title: "Article: AEGIS Age-Aware Safe-Action Layer"
 description: "Companion page for AEGIS, an age-aware safe-action projection that combines RGB-D sensing with asynchronous vision-language monitoring on a Niryo NED3 Pro."
-publishDate: "2026-08-15"
+publishDate: "2026-08-20"
 coverImage:
   src: "./img/aegis-age-aware-safe-action-cover-v2.webp"
   alt: "AEGIS age-aware safe-action layer deployed on a Niryo NED3 Pro with a fixed Intel RealSense camera"
@@ -18,11 +18,13 @@ Danial Zafaranchizadeh Moghaddam¹, Maryam Banitalebi Dehkordi¹, Hamed Rahimi N
 ² Interdisciplinary Centre for Security, Reliability and Trust (SnT), University of Luxembourg, 1855 Luxembourg  
 \* Corresponding author: `a.zaraki@herts.ac.uk`
 
-**Status:** Submitted to *Sensors*, Sensing and Imaging section.
+**Status:** Preprint available; submitted to *Sensors*, Sensing and Imaging section.
 
-**DOI:** To be added  
-**Journal page:** To be added  
-**Paper PDF:** To be added
+**Preprint:** [Read the manuscript on Preprints.org](https://www.preprints.org/manuscript/202608.1220)
+
+**Preprint DOI:** [10.20944/preprints202608.1220.v1](https://doi.org/10.20944/preprints202608.1220.v1)
+
+**Peer-reviewed journal page:** To be added after publication
 
 ## One-Line Abstract
 
@@ -134,10 +136,11 @@ Figures, videos and logs are released under CC BY 4.0. Please retain author attr
 @article{zafaranchizadeh_moghaddam_aegis,
   title = {AEGIS: An Age-Aware, Evidence-Guarded Safe-Action Layer Fusing RGB-D Sensing with Vision-Language Monitoring for Collision-Aware Robotic Manipulation},
   author = {Zafaranchizadeh Moghaddam, Danial and Banitalebi Dehkordi, Maryam and Rahimi Nohooji, Hamed and Zaraki, Abolfazl},
-  journal = {Sensors},
-  year = {YEAR_TO_BE_ADDED},
-  doi = {DOI_TO_BE_ADDED},
-  note = {Submitted manuscript}
+  journal = {Preprints},
+  year = {2026},
+  doi = {10.20944/preprints202608.1220.v1},
+  url = {https://www.preprints.org/manuscript/202608.1220},
+  note = {Preprint; not peer reviewed}
 }
 ```
 
